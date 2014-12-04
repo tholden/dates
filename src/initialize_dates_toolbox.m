@@ -14,12 +14,12 @@ if ~exist('isint','file')
     addpath([dates_src_root '/utilities/missing/isint'])
 end
 
-if ~exist('rows','file') || ~exist('columns','file') 
-    addpath([dates_src_root '/utilities/missing/dims'])
-end
-
 if ~exist('isoctave','file') 
     addpath([dates_src_root '/utilities/missing/isoctave'])
+end
+
+if ~isoctave && (~exist('rows','file') || ~exist('columns','file'))
+    addpath([dates_src_root '/utilities/missing/dims'])
 end
 
 if ~exist('shiftS','file') 
