@@ -1,26 +1,21 @@
-function s = char(dd)
+function s = char(o)
 
 % Given a one element dates object, returns a string with the formatted date.
 %
 % INPUTS 
-%   o dd   dates object with one element
+% - o  [dates]
 %
 % OUTPUTS
-%   o s    a string
-%
-% SPECIAL REQUIREMENTS
-%   none
+% - s  [string]
 
 % Copyright (C) 2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -28,8 +23,8 @@ function s = char(dd)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if length(dd)>1
-    error('The input argument must be a singleton dates object!')
+if length(o)>1
+    error('dates:char:ArgCheck', 'The input argument must be a dates object with one element!')
 end
 
-s = date2string(dd.time, dd.freq);
+s = date2string(o.time, o.freq);
