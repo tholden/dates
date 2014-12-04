@@ -1,28 +1,22 @@
-function B = append(A,a) % --*-- Unitary tests --*--
+function o = append(o, d) % --*-- Unitary tests --*--
 
 % append method for dates class.
 %
 % INPUTS 
-%  o A    dates object.
-%  o a    dates object with one element or string that can be interpreted as a date.
+% - o    dates object.
+% - a    dates object with one element or string that can be interpreted as a date.
 %
 % OUTPUTS 
-%  o B    dates object containing dates defined in A and a.
-%
-% EXAMPLE 1 
-%  If A is a dates object with quarterly frequency, then B = A.append(dates('1950Q2')) and 
-%  B = A.append('1950Q2') are equivalent syntaxes.
+% - o    dates object containing dates defined in A and a.
 
-% Copyright (C) 2012-2013 Dynare Team
+% Copyright (C) 2012-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -30,28 +24,23 @@ function B = append(A,a) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if isa(a,'dates')
-    if ~isequal(length(a),1)
-        error(['dates::append: Input argument ' inputname(2) ' has to be a dates object with one element.'])
+if isa(d, 'dates')
+    if ~isequal(length(d), 1)
+        error('dates:append:ArgCheck','Input argument %s has to be a dates object with one element.', inputname(2))
     end
-    if isempty(a)
-        B = A;
+    if isempty(d)
         return
     end
-elseif isdate(a)
-    a = dates(a);
+elseif isdate(d)
+    d = dates(d);
 end
 
-if ~isequal(A.freq, a.freq)
-    error(['dates::append: A and a must have common frequency!'])
+if ~isequal(o.freq, d.freq)
+    error('dates:append:ArgCheck','dates must have common frequency!')
 end
 
-B = dates();
-B.ndat = A.ndat+1;
-B.freq = A.freq;
-B.time = NaN(B.ndat,2);
-B.time(1:A.ndat,:) = A.time;
-B.time(A.ndat+1,:) = a.time; 
+o.ndat = o.ndat+1;
+o.time = [o.time; d.time];
 
 %@test:1
 %$ % Define some dates
@@ -68,7 +57,7 @@ B.time(A.ndat+1,:) = a.time;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
-%$ d = d.append(dates(B5));
+%$ d.append(dates(B5));
 %$
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
@@ -92,7 +81,7 @@ B.time(A.ndat+1,:) = a.time;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
-%$ d = d.append(B5);
+%$ d.append(B5);
 %$
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
