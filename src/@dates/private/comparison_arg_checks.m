@@ -25,19 +25,23 @@ function [o, p] = comparison_arg_checks(varargin)
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 if ~isequal(nargin,2)
-    error('dates:ge:ArgCheck','I need exactly two input arguments!')
+    s = dbstack;
+    error(sprintf('dates:%s:ArgCheck',s(2).name),'I need exactly two input arguments!')
 end
 
 if ~isa(varargin{1},'dates') || ~isa(varargin{2},'dates')
-    error('dates:ge:ArgCheck','Input arguments have to be dates objects!')
+    s = dbstack;
+    error(sprintf('dates:%s:ArgCheck',s(2).name),'Input arguments have to be dates objects!')
 end
 
 if ~isequal(varargin{1}.freq,varargin{2}.freq)
-    error('dates:ge:ArgCheck','Input arguments must have common frequency!')
+    s = dbstack;
+    error(sprintf('dates:%s:ArgCheck',s(2).name),'Input arguments must have common frequency!')
 end
 
 if ~isequal(varargin{1}.ndat, varargin{2}.ndat) && ~(isequal(varargin{1}.ndat,1) || isequal(varargin{2}.ndat,1))
-    error('dates:ge:ArgCheck','Dimensions are not consistent!')
+    s = dbstack;
+    error(sprintf('dates:%s:ArgCheck',s(2).name),'Dimensions are not consistent!')
 end
 
 o = varargin{1};
