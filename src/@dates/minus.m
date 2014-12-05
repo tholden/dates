@@ -1,18 +1,31 @@
-function C = minus(A,B) % --*-- Unitary tests --*--
+function q = minus(o,p) % --*-- Unitary tests --*--
 
-% Overloads the minus operator (-). If A and B are dates objects, the method returns the number of periods between A and B (so that A+C=B). If 
+% Overloads the minus operator (-). If o and p are dates objects, the method . If 
 % one of the inputs is an integer or a vector of integers, the method shifts the dates object by X (the interger input) periods backward.
 
-% Copyright (C) 2013 Dynare Team
+% Overloads the minus (-) binary operator.
 %
-% This file is part of Dynare.
+% INPUTS 
+% - o [dates]
+% - p [dates or integer]
 %
-% Dynare is free software: you can redistribute it and/or modify
+% OUTPUTS 
+% - q [dates]
+%
+% REMARKS 
+% 1. If o and p are dates objects the method returns the number of periods between o and p (so that q+o=p).
+% 2. If o is a dates object and p is an integer (scalar or vector), the method shifts the dates object by
+%    p periods backward.
+% 3. If o is not a dates object, an error is returned.
+
+% Copyright (C) 2013-2014 Dynare Team
+%
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -20,37 +33,42 @@ function C = minus(A,B) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if isa(B,'dates')
-    if ~isequal(A.freq,B.freq)
-        error(['dates::minus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' must have common frequencies!'])
+if isa(o,'dates') && isa(p,'dates')
+    if ~isequal(o.freq, p.freq)
+        error('dates:minus:ArgCheck','Input arguments must have common frequencies!')
     end
-    if isempty(A) || isempty(B)
-        error(['dates::minus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' must not be empty!'])
+    if isempty(o) || isempty(p)
+        error('dates:minus:ArgCheck','Input arguments must not be empty!')
     end
-    if ~isequal(length(A),length(B))
-        if length(A)==1
-            A.time = repmat(A.time,B.ndat,1);
-            A.ndat = B.ndat;
-        elseif length(B)==1
-            B.time = repmat(B.time,A.ndat,1);
-            B.ndat = A.ndat;
+    u = copy(o);
+    v = copy(p);
+    if ~isequal(u.length(),v.length())
+        if isequal(u.length(),1)
+            u.time = repmat(u.time,v.ndat,1);
+            u.ndat = v.ndat;
+        elseif isequal(v.length(),1)
+            v.time = repmat(v.time,u.ndat,1);
+            v.ndat = u.ndat;
         else
-            error(['dates::minus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' lengths are not consistent!'])
+            error('dates:minus:ArgCheck','Input arguments lengths are not consistent!')
         end
     end
-    C = zeros(length(A),1);
-    id = find(~(A==B));
-    if isempty(id)
-        return
+    q = zeros(u.length(),1);
+    id = find(~(u==v));
+    if ~isempty(id)
+        q(id) = u.time(id,2)-v.time(id,2) + (u.time(id,1)-v.time(id,1))*v.freq;
     end
-    C(id) = A.time(id,2)-B.time(id,2) + (A.time(id,1)-B.time(id,1))*A.freq;
-elseif (isvector(B) && isequal(length(B),A.ndat) && all(isint(B))) || isscalar(B) && isint(B) || isequal(length(A),1) && isvector(B) && all(isint(B))
-    C = dates();
-    C.freq = A.freq;
-    C.time = add_periods_to_array_of_dates(A.time, A.freq, -B);
-    C.ndat = rows(C.time);
+elseif isa(o,'dates') && ~isa(p,'dates')
+    if (isvector(p) && isequal(length(p),o.ndat) && all(isint(p))) || (isscalar(p) && isint(p)) || (isequal(o.length(),1) && isvector(p) && all(isint(p)))
+        q = dates();
+        q.freq = o.freq;
+        q.time = add_periods_to_array_of_dates(o.time, o.freq, -p(:));
+        q.ndat = rows(q.time);
+    else
+        error('dates:minus:ArgCheck','Second argument has to be a vector of integers or scalar integer. You should read the manual.')
+    end
 else
-    error('dates::plus: I don''t understand what you want to do! Check the manual.')
+    error('dates:minus:ArgCheck','You should read the manual.')
 end
 
 %@test:1

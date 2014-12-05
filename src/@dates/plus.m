@@ -1,19 +1,27 @@
-function C = plus(A,B) % --*-- Unitary tests --*--
+function q = plus(o,p) % --*-- Unitary tests --*--
 
-% Overloads the plus operator. If A and B are dates objects the method combines A and B without removing repetitions. If
-% one of the inputs is an integer or a vector of integers, the method shifts the dates object by X (the interger input)
-% periods forward.
+% Overloads the plus (+) binary operator.
+%
+% INPUTS 
+% - o [dates or integer]
+% - p [dates or integer]
+%
+% OUTPUTS 
+% - q [dates]
+%
+% REMARKS 
+% 1. If o and p are dates objects the method combines o and p without removing repetitions.
+% 2. If  one of the inputs is an integer or a vector of integers, the method shifts the dates
+%    object by X (the interger input) periods forward.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -21,30 +29,43 @@ function C = plus(A,B) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if isa(B,'dates')
-    % Concatenate dates objects without removing repetitions if A and B are not disjoint sets of dates.
-    if ~isequal(A.freq,B.freq) && A.ndat>0 && B.ndat>0
-        error(['dates::plus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' must have common frequencies!'])
+if isa(o,'dates') && isa(p,'dates')
+    % Concatenate dates objects without removing repetitions if o and p are not disjoint sets of dates.
+    if ~isequal(o.freq,p.freq)
+        error('dates:plus:ArgCheck','Input arguments must have common frequency!')
     end
-    if isempty(B)
-        C = A;
+    if isempty(p)
+        q = copy(o);
         return
     end
-    if isempty(A)
-        C = B;
+    if isempty(o)
+        q = copy(p);
         return
     end
-    C = dates();
-    C.freq = A.freq;
-    C.time = [A.time; B.time];
-    C.ndat = A.ndat+B.ndat;
-elseif (isvector(B) && isequal(length(B),A.ndat) && all(isint(B))) || isscalar(B) && isint(B) || isequal(length(A),1) && isvector(B) && all(isint(B))
-    C = dates();
-    C.freq = A.freq;
-    C.time = add_periods_to_array_of_dates(A.time, A.freq, B);
-    C.ndat = rows(C.time);
+    q = dates();
+    q.freq = q.freq;
+    q.time = [o.time; p.time];
+    q.ndat = o.ndat+p.ndat;
+elseif isa(o,'dates') || isa(p,'dates')
+    if isa(o,'dates') && ((isvector(p) && isequal(length(p),o.ndat) && all(isint(p))) || ...
+                          (isequal(o.length(),1) && isvector(p) && all(isint(p))) || ...
+                          (isscalar(p) && isint(p)))
+        q = dates();
+        q.freq = o.freq;
+        q.time = add_periods_to_array_of_dates(o.time, q.freq, p(:));
+        q.ndat = rows(q.time);
+    elseif isa(p,'dates') && ((isvector(o) && isequal(length(o),p.ndat) && all(isint(o))) || ...
+                              (isequal(p.length(),1) && isvector(o) && all(isint(o))) || ...
+                              (isscalar(o) && isint(o)) )
+        q = dates();
+        q.freq = p.freq;
+        q.time = add_periods_to_array_of_dates(p.time, q.freq, o(:));
+        q.ndat = rows(q.time);
+    else
+        error('dates:plus:ArgCheck','Please read the manual.')
+    end
 else
-    error('dates::plus: I don''t understand what you want to do! Check the manual.')
+    error('dates:plus:ArgCheck','Please read the manual.')
 end
 
 %@test:1
