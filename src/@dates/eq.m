@@ -1,24 +1,22 @@
-function C = eq(A,B) % --*-- Unitary tests --*--
+function l = eq(varargin) % --*-- Unitary tests --*--
 
 % Overloads == operator for dates objects.
 %
-% INPUTS 
-%  o A    dates object with n or 1 elements.
-%  o B    dates object with n or 1 elements.
+% INPUTS
+% - o [dates] dates object with n or 1 elements.
+% - p [dates] dates object with n or 1 elements.
 %
-% OUTPUTS 
-%  o C    column vector of max(n,1) elements (zeros or ones).
+% OUTPUTS
+% - l [logical] column vector of max(n,1) elements (zeros or ones).
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -26,27 +24,12 @@ function C = eq(A,B) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if ~isequal(nargin,2)
-    error('dates::eq: I need exactly two input arguments!')
-end
+[o, p] = comparison_arg_checks(varargin{:});
 
-if ~isa(A,'dates') || ~isa(B,'dates')
-    error(['dates::eq: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' have to be a dates objects!'])
-end
-
-if ~isequal(A.freq,B.freq)
-    C = false;
-    return
-end
-
-if isequal(A.ndat, B.ndat)
-    C = logical(transpose(all(transpose(eq(A.time,B.time)))));
+if isequal(o.ndat, p.ndat)
+    l = logical(transpose(all(transpose(eq(o.time,p.time)))));
 else
-    if isequal(A.ndat,1) || isequal(B.ndat,1)
-        C = logical(transpose(all(transpose(bsxfun(@eq,A.time,B.time)))));
-    else
-        C = false;
-    end
+    l = logical(transpose(all(transpose(bsxfun(@eq,o.time,p.time)))));
 end
 
 %@test:1
