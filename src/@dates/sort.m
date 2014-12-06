@@ -1,23 +1,21 @@
-function dd = sort(dd) % --*-- Unitary tests --*--
+function o = sort(o) % --*-- Unitary tests --*--
 
 % Sort method for dates class.
 %
 % INPUTS 
-%  o dd    dates object.
+% - o [dates]
 %
 % OUTPUTS 
-%  o dd    dates object (with dates sorted by increasing order).
+% - o [dates] with dates sorted by increasing order.
 
-% Copyright (C) 2011-2013 Dynare Team
+% Copyright (C) 2011-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -25,11 +23,11 @@ function dd = sort(dd) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if isequal(dd.ndat,1)
+if isequal(o.ndat,1)
     return
 end
 
-dd.time = sortrows(dd.time,[1,2]);
+o.time = sortrows(o.time,[1,2]);
 
 %@test:1
 %$ % Define some dates
