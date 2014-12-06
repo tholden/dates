@@ -120,3 +120,19 @@ end
 %$ t(3) = dassert(d,dates(B2,B4));
 %$ T = all(t);
 %@eof:2
+
+%@test:3
+%$ % Define some dates
+%$ B1 = '1950Q1';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q3';
+%$ % Call the tested routine
+%$ d = dates(B1,B2,B3);
+%$ d.pop();
+%$ t(1) = dassert(d,dates(B1,B2));
+%$ d.pop(B1);
+%$ t(2) = dassert(d,dates(B2));
+%$ d.pop(1);
+%$ t(3) = isempty(d);
+%$ T = all(t);
+%@eof:3
