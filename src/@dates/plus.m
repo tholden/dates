@@ -43,7 +43,7 @@ if isa(o,'dates') && isa(p,'dates')
         return
     end
     q = dates();
-    q.freq = q.freq;
+    q.freq = o.freq;
     q.time = [o.time; p.time];
     q.ndat = o.ndat+p.ndat;
 elseif isa(o,'dates') || isa(p,'dates')
