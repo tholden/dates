@@ -1,26 +1,24 @@
-function D = union(varargin) % --*-- Unitary tests --*--
+function o = union(varargin) % --*-- Unitary tests --*--
 
 % Overloads union function for dates objects (removes repetitions if any).
 %
 % INPUTS 
-%  o A    dates object.
-%  o B    dates object.
-%  o C    dates object.
-%  o ...
+% - varargin [dates]
 %
 % OUPUTS 
-%  o D    dates object (elements are sorted by increasing order).
+% - o [dates]
+%
+% REMARKS 
+% 1. Elements in o are sorted by increasing order.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -28,12 +26,16 @@ function D = union(varargin) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
+if ~all(cellfun(@isdates,varargin))
+    error('dates:union:ArgCheck','All input arguments must be dates objects.')
+end
+
 if isequal(nargin,1)
-    D = sort(unique(varargin{1}));
+    o = sort(unique(varargin{1}));
     return;
 end
 
-D = sort(unique(horzcat(varargin{:})));
+o = sort(unique(horzcat(varargin{:})));
 
 %@test:1
 %$ % Define some dates objects
