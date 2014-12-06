@@ -51,6 +51,12 @@ else
     if ~isequal(o.freq,p.freq)
         error('dates:pop','Inputs must have common frequency!')
     end
+    if p.length()>1
+        error('dates:pop','dates to be removed must have one element!')
+    end
+    if isempty(p)
+        return
+    end
     idx = find(o==p);
     jdx = find(transpose(1:o.ndat)~=idx(end));
     o.time = o.time(jdx,:);
