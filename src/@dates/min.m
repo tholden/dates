@@ -1,17 +1,21 @@
-function C = min(varargin)
-    
+function q = min(varargin) % --*-- Unitary tests --*--
+
 % Overloads the min function for dates objects.
-    
-% Copyright (C) 2013 Dynare Team
 %
-% This file is part of Dynare.
+% INPUTS 
+% - varargin [dates]
 %
-% Dynare is free software: you can redistribute it and/or modify
+% OUTPUTS 
+% - q [dates]
+
+% Copyright (C) 2013-2014 Dynare Team
+%
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -19,22 +23,19 @@ function C = min(varargin)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
+if ~all(cellfun(@isdates,varargin))
+    error('dates:min:ArgCheck','All input arguments must be dates objects.')
+end
+
 switch nargin
   case 1
-    switch length(varargin{1})
-      case 0
-        C= dates();
-      case 1
-        C = varargin{1};
-      otherwise
-        tmp = sortrows(varargin{1}.time);
-        C = dates();
-        C.freq = varargin{1}.freq;
-        C.ndat = 1;
-        C.time = tmp(1,:);
-    end
+    sorted_time_member = sortrows(varargin{1}.time);
+    q = dates();
+    q.freq = varargin{1}.freq;
+    q.ndat = 1;
+    q.time = sorted_time_member(1,:);
   otherwise
-    C = min(horzcat(varargin{:}));
+    q = min(horzcat(varargin{:}));
 end
 
 %@test:1
@@ -49,8 +50,8 @@ end
 %$ i3 = (m3==d6);
 %$
 %$ % Check the results.
-%$ t(1) = dassert(i2,1);
-%$ t(2) = dassert(i3,1);
+%$ t(1) = dassert(i2,true);
+%$ t(2) = dassert(i3,true);
 %$ T = all(t);
 %@eof:1
 
@@ -61,7 +62,7 @@ end
 %$ i = (m==dates('1949Q1'));
 %$
 %$ % Check the results.
-%$ t(1) = dassert(i,1);
+%$ t(1) = dassert(i,true);
 %$ T = all(t);
 %@eof:2
 
@@ -71,7 +72,7 @@ end
 %$ i = (m==dates('1949Q1'));
 %$
 %$ % Check the results.
-%$ t(1) = dassert(i,1);
+%$ t(1) = dassert(i,true);
 %$ T = all(t);
 %@eof:3
 
@@ -81,6 +82,6 @@ end
 %$ i = (m==dates('1949Q1'));
 %$
 %$ % Check the results.
-%$ t(1) = dassert(i,1);
+%$ t(1) = dassert(i,true);
 %$ T = all(t);
 %@eof:4
