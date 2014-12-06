@@ -10,9 +10,11 @@ function o = pop(o, p) % --*-- Unitary tests --*--
 % - o [dates]
 %
 % REMARKS 
-% 1. If a is a date appearing more than once in A, then only the last occurence is removed. If one wants to
-%    remove all the occurences of a in A, the setdiff function should be used instead.
-
+% 1. If a is a date appearing more than once in o, then only the last occurence is removed. If one wants to
+%    remove all the occurences of p in o, the remove method should be used instead.
+%
+% See also remove, setdiff.
+    
 % Copyright (C) 2013-2014 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
