@@ -1,26 +1,21 @@
-function m = strings(dd)
+function m = strings(o)
 
 % Returns a cell array of strings containing the dates
 %
 % INPUTS 
-%   o dd   dates object
+% - o [dates] object with n elements.
 %
 % OUTPUTS
-%   o m    cell array of strings
-%
-% SPECIAL REQUIREMENTS
-%   none
+% - m [cell of char] object with n elements.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -28,8 +23,8 @@ function m = strings(dd)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-m = cell(1,dd.ndat);
+m = cell(1,o.ndat);
 
-for i = 1:dd.ndat
-    m(i) = { date2string(dd.time(i,:), dd.freq) };
+for i = 1:o.length()
+    m(i) = { date2string(o.time(i,:), o.freq) };
 end
