@@ -1,28 +1,27 @@
-function C = colon(varargin) % --*-- Unitary tests --*--
+function q = colon(varargin) % --*-- Unitary tests --*--
 
 % Overloads the colon operator (:). This method can be used to create ranges of dates.
 %
 % INPUTS 
-%  o A    dates object with one element.
-%  o d    integer scalar, number of periods between each date (default value, if nargin==2, is one)
-%  o B    dates object with one element.
+%  o o [dates] Initial date.
+%  o d [integer] Number of periods between each date (default value, if nargin==2, is one)
+%  o p [dates] Terminal date.
 %
 % OUTPUTS 
-%  o C    dates object with length(B-A) elements (if d==1).
+%  o q [dates] Object with length(p-o) elements (if d==1).
 %
 % REMARKS 
-%  B must be greater than A if d>0.
+% 1. p must be greater than o if d>0.
+% 2. p and q are dates objects with one element.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -30,81 +29,86 @@ function C = colon(varargin) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
+% Check the input arguments.
 if isequal(nargin,2)
-    A = varargin{1};
-    B = varargin{2};
+    o = varargin{1};
+    p = varargin{2};
     d = 1;
-    if ~(isa(A,'dates') && isa(B,'dates') && isequal(length(A),1) && isequal(length(B),1))
-        error('dates::colon: In an expression like A:B, A and B must be dates objects!')
+    if ~(isa(o,'dates') && isa(p,'dates') && isequal(o.length(),1) && isequal(p.length(),1))
+        error('dates:colon:ArgCheck','In an expression like A:B, A and B must be one element dates objects!')
     end
 elseif isequal(nargin,3)
-    A = varargin{1};
-    B = varargin{3};
+    o = varargin{1};
+    p = varargin{3};
     d = varargin{2};
-    if ~(isa(A,'dates') && isa(B,'dates') && isequal(length(A),1) && isequal(length(B),1))
-        error('dates::colon: In an expression like A:d:B, A and B must be dates objects and d a scalar integer (number of periods)!')
-    end
-    if ~(isscalar(d) && isint(d))
-        error('dates::colon: In an expression like A:d:B, A and B must be dates objects and d a scalar integer (number of periods)!')
+    if ~(isa(o,'dates') && isa(p,'dates') && isequal(o.length(),1) && isequal(o.length(),1) && isscalar(d) && isint(d))
+        error('dates:colon:ArgCheck','In an expression like A:d:B, A and B must be one element dates objects and d a scalar integer!')
     end
     if isequal(d,0)
-        error('dates::colon: In an expression like A:d:B, d (the incremental number of periods) must nonzero!')
+        error('dates:colon:ArgCheck','In an expression like A:d:B, d (the incremental number of periods) must nonzero!')
     end
 else
-    error('dates::colon: Wrong calling sequence! See the manual for the colon (:) operator and dates objects.')
+    error('dates:colon:ArgCheck','See the manual for the colon (:) operator and dates objects.')
 end
 
-if ~isequal(A.freq,B.freq)
-    error(['dates::colon: Input arguments ' inputname(1) ' and ' inputname(2) ' must have common frequency!'])
+if ~isequal(o.freq, p.freq)
+    error('dates:colon:ArgCheck','dates::colon: Input arguments %s and %s must have common frequency!', inputname(1), inputname(2))
 end
 
-if A>B && d>0
-    error(['dates::colon: ' inputname(1) ' must precede ' inputname(2) '!' ])
+if o>p && d>0
+    error('dates:colon:ArgCheck','First date must preceed the second one!')
 end
 
-if B>A && d<0
-    error(['dates::colon: ' inputname(2) ' must precede ' inputname(1) '!' ])
+if p>o && d<0
+    error('dates:colon:ArgCheck','Second date must preceed the first one!')
 end
 
-C = dates();
-n = (B-A)+1;
+% Initialize the output argument.
+q = dates();
+
+% Compute the number of elements in the returned dates object.
+n = (p-o)+1; % The number of elements in q dates object if d==1.
 m = n;
-if d>1
-    m = length(1:d:n);
+if d>1 % Correction of the number of elements (if d is not equal to one).
+    m = length(1:d:n); 
 end
-C.freq = A.freq;
 
-if isequal(C.freq,1)
-    C.ndat = m;
-    C.time = NaN(m,2);
-    C.time(:,1) = A.time(1)+transpose(0:d:n-1);
-    C.time(:,2) = 1;
+% Set the frequency in q
+q.freq = o.freq;
+
+if isequal(q.freq, 1)
+    % Yearly
+    q.ndat = m;
+    q.time = NaN(m,2);
+    q.time(:,1) = o.time(1)+transpose(0:d:n-1);
+    q.time(:,2) = 1;
 else
-    C.time = NaN(n,2);
-    initperiods = min(C.freq-A.time(2)+1,n);
-    C.time(1:initperiods,1) = A.time(1);
-    C.time(1:initperiods,2) = transpose(A.time(2)-1+(1:initperiods));
+    % Weekly, Monthly, Quaterly
+    q.time = NaN(n,2);
+    initperiods = min(q.freq-o.time(2)+1,n);
+    q.time(1:initperiods,1) = o.time(1);
+    q.time(1:initperiods,2) = transpose(o.time(2)-1+(1:initperiods));
     if n>initperiods
-        p = n-initperiods;
-        if p<=C.freq
-            C.time(initperiods+(1:p),1) = A.time(1)+1;
-            C.time(initperiods+(1:p),2) = transpose(1:p);
+        l = n-initperiods;
+        if l<=q.freq
+            q.time(initperiods+(1:l),1) = o.time(1)+1;
+            q.time(initperiods+(1:l),2) = transpose(1:l);
         else
-            q = fix(p/C.freq);
-            r = rem(p,C.freq);
-            C.time(initperiods+(1:C.freq*q),2) = repmat(transpose(1:C.freq),q,1);
-            C.time(initperiods+(1:C.freq*q),1) = kron(A.time(1)+transpose(1:q),ones(C.freq,1));
+            k = fix(l/o.freq);
+            r = rem(l,o.freq);
+            q.time(initperiods+(1:q.freq*k),2) = repmat(transpose(1:q.freq),k,1);
+            q.time(initperiods+(1:q.freq*k),1) = kron(o.time(1)+transpose(1:k),ones(q.freq,1));
             if r>0
-                C.time(initperiods+C.freq*q+(1:r),1) = C.time(initperiods+C.freq*q,1)+1;
-                C.time(initperiods+C.freq*q+(1:r),2) = transpose(1:r);
+                q.time(initperiods+q.freq*k+(1:r),1) = q.time(initperiods+q.freq*k,1)+1;
+                q.time(initperiods+q.freq*k+(1:r),2) = transpose(1:r);
             end
         end
     end
     if d>1
-        C.time = C.time(1:d:n,:);
-        C.ndat = m;
+        q.time = q.time(1:d:n,:);
+        q.ndat = m;
     else
-        C.ndat = n;
+        q.ndat = n;
     end
 end
 
