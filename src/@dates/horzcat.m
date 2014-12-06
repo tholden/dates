@@ -1,32 +1,21 @@
-function B = horzcat(varargin) % --*-- Unitary tests --*--
+function o = horzcat(varargin) % --*-- Unitary tests --*--
 
 % Overloads the horzcat method for dates objects.
 %
 % INPUTS 
-%  o A1    dates object.
-%  o A2    dates object.
-%  o ...
+% - varargin [dates]
 %
 % OUTPUTS 
-%  o B    dates object containing dates defined in A1, A2, ...
+% - o [dates] object containing dates defined in varargin{:}
+
+% Copyright (C) 2013-2014 Dynare Team
 %
-% EXAMPLE 1 
-%  If A, B and C are dates objects the following syntax:
-%    
-%    D = [A, B, C] ;
-%
-%  Defines a dates object D containing the dates appearing in A, B and C.
-    
-% Copyright (C) 2013 Dynare Team
-%
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -35,23 +24,25 @@ function B = horzcat(varargin) % --*-- Unitary tests --*--
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 if ~all(cellfun(@isdates,varargin))
-    error('dates::horzcat: All input arguments must be dates objects.')
+    error('dates:horzcat:ArgCheck','All input arguments must be dates objects.')
 end
 
 n = nargin;
-B = varargin{1};
+o = copy(varargin{1});
 
-if isequal(n,1), return, end
+if isequal(n,1)
+    return
+end
 
 for i=2:n
-    C = varargin{i};
-    if isequal(B.freq,C.freq)
-        if ~isempty(C)
-            B.ndat = B.ndat + C.ndat;
-            B.time = [B.time; C.time];
+    p = varargin{i};
+    if isequal(o.freq,p.freq)
+        if ~isempty(p)
+            o.ndat = o.ndat + p.ndat;
+            o.time = [o.time; p.time];
         end
     else
-        error('dates::horzcat: All input arguments must have the same frequency!')
+        error('dates','All input arguments must have the same frequency!')
     end
 end
 
