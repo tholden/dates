@@ -1,17 +1,22 @@
-function C = isequal(A, B, fake)
+function l = isequal(o, p, fake)
 
-% Overloads isequal function for dates objects.
-    
-% Copyright (C) 2013 Dynare Team
+% Overloads isequal function for dates objects. Returns true (1) iff o and p have the same elements.
 %
-% This file is part of Dynare.
+% INPUTS 
+% - o [dates]
+% - p [dates]
 %
-% Dynare is free software: you can redistribute it and/or modify
+% OUTPUTS 
+% - l [logical]
+
+% Copyright (C) 2013-2014 Dynare Team
+%
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -19,18 +24,59 @@ function C = isequal(A, B, fake)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if ~isa(A,'dates') || ~isa(B,'dates')
-    error('dates::isequal: Both inputs must be dates objects!')
+if ~isa(o,'dates') || ~isa(p,'dates')
+    error('dates:isequal:ArgCheck','Both inputs must be dates objects!')
 end
 
-if ~isequal(A.freq, B.freq)
-    C = 0;
+if ~isequal(o.freq, p.freq)
+    l = false;
     return
 end
 
-if ~isequal(A.ndat, B.ndat)
-    C = 0;
+if ~isequal(o.ndat, p.ndat)
+    l = false;
     return
 end
 
-C = isequal(A.time,B.time);
+l = isequal(o.time, p.time);
+
+%@test:1
+%$ d1 = dates('1938Q1');
+%$ d2 = dates('1938Q1');
+%$ % Test if this object is empty
+%$ t(1) = isequal(d1,d2);
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ d1 = dates('1938Q1');
+%$ d2 = dates('1938Q2');
+%$ % Test if this object is empty
+%$ t(1) = ~isequal(d1,d2);
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ d1 = dates('1938Q4');
+%$ d2 = dates('1938M11');
+%$ % Test if this object is empty
+%$ t(1) = ~isequal(d1,d2);
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ d1 = dates('1938Q4','1938Q3');
+%$ d2 = dates('1938Q3','1938Q1');
+%$ % Test if this object is empty
+%$ t(1) = ~isequal(d1,d2);
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ d1 = dates('1938Q4','1938Q3','1938Q2');
+%$ d2 = dates('1938Q3','1938Q1');
+%$ % Test if this object is empty
+%$ t(1) = ~isequal(d1,d2);
+%$ T = all(t);
+%@eof:5
+
