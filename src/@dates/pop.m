@@ -1,28 +1,26 @@
-function B = pop(A,a) % --*-- Unitary tests --*--
+function o = pop(o, p) % --*-- Unitary tests --*--
 
 % pop method for dates class (removes a date).
 %
 % INPUTS 
-%  o A     dates object.
-%  o a     dates object with one element, string which can be interpreted as a date or integer scalar.
+% - o [dates]
+% - p [dates] object with one element, string which can be interpreted as a date or integer scalar.
 %
 % OUTPUTS 
-%  o B     dates object (with B.ndat==A.ndat-1).
+% - o [dates]
 %
 % REMARKS 
-%  If a is a date appearing more than once in A, then only the last occurence is removed. If one wants to
-%  remove all the occurences of a in A, the setdiff function should be used instead.
+% 1. If a is a date appearing more than once in A, then only the last occurence is removed. If one wants to
+%    remove all the occurences of a in A, the setdiff function should be used instead.
 
-% Copyright (C) 2012-2013 Dynare Team
+% Copyright (C) 2013-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
@@ -32,37 +30,31 @@ function B = pop(A,a) % --*-- Unitary tests --*--
 
 if nargin<2
     % Remove last date
-    B = dates();
-    B.ndat = A.ndat-1;
-    B.freq = A.freq;
-    B.time = NaN(B.ndat,2);
-    B.time = A.time(1:end-1,:);
+    o.ndat = o.ndat-1;
+    o.time = o.time(1:end-1,:);
     return
 end
 
-if ~( isdates(a) || isdate(a) || (isscalar(a) && isint(a)) )
-    error(['dates::pop: Input argument ' inputname(2) ' has to be a dates object with a single element, a string (which can be interpreted as a date) or an integer.'])
+if ~( isdates(p) || isdate(p) || (isscalar(p) && isint(p)) )
+    error('dates:pop','Input argument %s has to be a dates object with a single element, a string (which can be interpreted as a date) or an integer!',inputname(2))
 end
 
-if ischar(a)
-    a = dates(a);
+if ischar(p)
+    p = dates(p);
 end
 
-B = dates();
-B.ndat = A.ndat-1;
-B.freq = A.freq;
-B.time = NaN(B.ndat,2);
-
-if isscalar(a) && isint(a)
-    idx = find(transpose(1:A.ndat)~=a);
-    B.time = A.time(idx,:);
+if isnumeric(p)
+    idx = find(transpose(1:o.ndat)~=p);
+    o.time = o.time(idx,:);
+    o.ndat = o.ndat-1;
 else
-    if ~isequal(A.freq,a.freq)
-        error('dates::pop: Inputs must have common frequency!')
+    if ~isequal(o.freq,p.freq)
+        error('dates:pop','Inputs must have common frequency!')
     end
-    idx = find(A==a);
-    jdx = find(transpose(1:A.ndat)~=idx(end));
-    B.time = A.time(jdx,:);
+    idx = find(o==p);
+    jdx = find(transpose(1:o.ndat)~=idx(end));
+    o.time = o.time(jdx,:);
+    o.ndat = o.ndat-1;
 end
 
 %@test:1
@@ -80,19 +72,20 @@ end
 %$
 %$ % Call the tested routine
 %$ d = dates(B4,B3,B2,B1);
-%$ d = d.append(dates(B5));
-%$ f = d.pop();
-%$ t(1) = dassert(f.time,e.time(1:end-1,:));
-%$ t(2) = dassert(f.freq,e.freq);
-%$ t(3) = dassert(f.ndat,e.ndat-1);
-%$ f = d.pop(B1);
-%$ t(4) = dassert(f.time,[1945 3; 1950 1; 1950 2; 2009 2]);
-%$ t(5) = dassert(f.freq,e.freq);
-%$ t(6) = dassert(f.ndat,e.ndat-1);
-%$ f = d.pop(dates(B1));
-%$ t(7) = dassert(f.time,[1945 3; 1950 1; 1950 2; 2009 2]);
+%$ d.append(dates(B5));
+%$ d.pop();
+%$ t(1) = dassert(d.time,e.time(1:end-1,:));
+%$ t(2) = dassert(d.freq,e.freq);
+%$ t(3) = dassert(d.ndat,e.ndat-1);
+%$ f = copy(d);
+%$ d.pop(B1);
+%$ t(4) = dassert(d.time,[1945 3; 1950 1; 1950 2]);
+%$ t(5) = dassert(d.freq,e.freq);
+%$ t(6) = dassert(d.ndat,e.ndat-2);
+%$ f.pop(dates(B1));
+%$ t(7) = dassert(f.time,[1945 3; 1950 1; 1950 2]);
 %$ t(8) = dassert(f.freq,e.freq);
-%$ t(9) = dassert(f.ndat,e.ndat-1);
+%$ t(9) = dassert(f.ndat,e.ndat-2);
 %$
 %$ % Check the results.
 %$ T = all(t);
@@ -108,12 +101,12 @@ end
 %$
 %$ % Call the tested routine
 %$ d = dates(B1,B2,B3,B4);
-%$ d = d.append(dates(B5));
-%$ f = d.pop();
-%$ t(1) = dassert(f,dates(B1,B2,B3,B4));
-%$ f = d.pop(B1);
-%$ t(2) = dassert(f,dates(B1,B2,B4,B5));
-%$ g = f.pop(1);
-%$ t(3) = dassert(g,dates(B2,B4,B5));
+%$ d.append(dates(B5));
+%$ d.pop();
+%$ t(1) = dassert(d,dates(B1,B2,B3,B4));
+%$ d.pop(B1);
+%$ t(2) = dassert(d,dates(B1,B2,B4));
+%$ d.pop(1);
+%$ t(3) = dassert(d,dates(B2,B4));
 %$ T = all(t);
 %@eof:2
