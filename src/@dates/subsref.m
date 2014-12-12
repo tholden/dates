@@ -10,7 +10,8 @@ function B = subsref(A,S) % --*-- Unitary tests --*--
 % - B [*]
 %
 % REMARKS 
-%  See the matlab's documentation about the subsref method.
+% 1. The type of the returned argument depends on the content of S.
+% 2. See the matlab's documentation about the subsref method.
 
 % Copyright (C) 2011-2014 Dynare Team
 %
