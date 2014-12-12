@@ -1,27 +1,25 @@
 function B = subsref(A,S) % --*-- Unitary tests --*--
 
-% Overload the subsref method for dates objects.
+% Overloads the subsref method for dates objects.
 %
 % INPUTS 
-%  o A     dates object.
-%  o S     matlab's structure.
+% - A [dates]
+% - S [structure]
 %
 % OUTPUTS 
-%  o B     dates object.
+% - B [*]
 %
 % REMARKS 
 %  See the matlab's documentation about the subsref method.
 
 % Copyright (C) 2011-2014 Dynare Team
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% Dynare dates submodule is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
