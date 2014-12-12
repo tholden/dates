@@ -117,7 +117,7 @@ switch S(1).type
         else
             % Populate an empty dates object with time member (freq is already specified).
             % Needs one (time) or two (first and second columns of time for years and subperiods) inputs.
-            B = A;
+            B = copy(A);
             if isequal(length(S(1).subs),2)
                 if ~iscolumn(S(1).subs{1}) && ~all(isint(S(1).subs{1}))
                     error('dates::subsref: First argument has to be a column vector of integers!')
