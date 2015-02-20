@@ -1,6 +1,6 @@
 classdef dates<handle
 
-% Copyright (C) 2014 Dynare Team
+% Copyright (C) 2014-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ classdef dates<handle
                     o.freq = varargin{1};
                 end
                 if isequal(o.freq, 1)
-                    if (isnumeric(varargin{2}) && isvector(varargin{2}) && isint(varargin{2}))
+                    if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
                         o.time = [varargin{2}, ones(length(varargin{2}),1)];
                         o.ndat = size(o.time,1);
                         return
