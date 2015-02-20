@@ -136,7 +136,7 @@ if isequal(nargin,2) && isfreq(varargin{1})
         dd.freq = varargin{1};
     end
     if isequal(dd.freq, 1)
-        if (isnumeric(varargin{2}) && isvector(varargin{2}) && isint(varargin{2}))
+        if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
             dd.time = [varargin{2}, ones(length(varargin{2}),1)];
             dd.ndat = size(dd.time,1);
             return
