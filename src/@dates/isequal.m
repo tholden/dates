@@ -9,7 +9,7 @@ function l = isequal(o, p, fake)
 % OUTPUTS 
 % - l [logical]
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ if ~isequal(o.freq, p.freq)
     return
 end
 
-if ~isequal(o.ndat, p.ndat)
+if ~isequal(o.ndat(), p.ndat())
     l = false;
     return
 end

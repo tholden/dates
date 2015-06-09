@@ -8,7 +8,7 @@ function o = horzcat(varargin) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - o [dates] object containing dates defined in varargin{:}
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -38,7 +38,6 @@ for i=2:n
     p = varargin{i};
     if isequal(o.freq,p.freq)
         if ~isempty(p)
-            o.ndat = o.ndat + p.ndat;
             o.time = [o.time; p.time];
         end
     else
@@ -57,7 +56,6 @@ end
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
@@ -66,7 +64,7 @@ end
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1)==d.ndat();
 %$ T = all(t);
 %@eof:1
 
@@ -81,7 +79,6 @@ end
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2);
@@ -90,7 +87,7 @@ end
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1)==d.ndat();
 %$ T = all(t);
 %@eof:2
 
@@ -105,7 +102,6 @@ end
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2);
@@ -114,7 +110,7 @@ end
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1)==d.ndat();
 %$ T = all(t);
 %@eof:3
 
@@ -129,7 +125,6 @@ end
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2);
@@ -138,6 +133,6 @@ end
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1)==d.ndat();
 %$ T = all(t);
 %@eof:4

@@ -1,14 +1,14 @@
-function m = strings(o)
+function s = ndat(o)
 
-% Returns a cell array of strings containing the dates
+% Given a one element dates object, returns a string with the formatted date.
 %
 % INPUTS 
-% - o [dates] object with n elements.
+% - o  [dates]
 %
 % OUTPUTS
-% - m [cell of char] object with n elements.
+% - s  [integer]
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -23,8 +23,4 @@ function m = strings(o)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-m = cell(1,o.ndat());
-
-for i = 1:o.length()
-    m(i) = { date2string(o.time(i,:), o.freq) };
-end
+s = size(o.time, 1);

@@ -8,7 +8,7 @@ function n = length(o)
 % OUTPUTS 
 % - n [integer] Number of elements in o.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ function n = length(o)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-n = o.ndat;
+n = o.ndat();
 
 %@test:1
 %$ d = dates('1938Q1');

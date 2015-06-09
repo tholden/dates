@@ -11,7 +11,7 @@ function o = unique(o) % --*-- Unitary tests --*--
 % REMARKS 
 % 1. Only the last occurence of a date is kept.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ function o = unique(o) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if o.ndat<=1
+if o.ndat()<=1
     return
 end
 
@@ -37,7 +37,6 @@ else
 end
 
 o.time = o.time(sort(id),:);
-o.ndat = size(o.time,1);
 
 %@test:1
 %$ % Define some dates
@@ -50,7 +49,6 @@ o.ndat = size(o.time,1);
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
 %$ e.freq = 4;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4,B5);
@@ -59,6 +57,6 @@ o.ndat = size(o.time,1);
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1) == d.ndat();
 %$ T = all(t);
 %@eof:1

@@ -9,7 +9,7 @@ function l = ge(varargin)  % --*-- Unitary tests --*--
 % OUTPUTS 
 % - l [logical] column vector of max(n,1) elements (zeros or ones).
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -26,21 +26,21 @@ function l = ge(varargin)  % --*-- Unitary tests --*--
 
 [o, p] = comparison_arg_checks(varargin{:});
 
-if isequal(o.ndat, p.ndat)
+if isequal(o.ndat(), p.ndat())
     l = (o==p);
     idx = find(l==false);
     for i=1:length(idx)
         l(idx(i)) = greaterorequal(o.time(idx(i),:), p.time(idx(i),:));
     end
 else
-    if isequal(o.ndat,1)
-        l = false(p.ndat,1);
-        for i=1:p.ndat
+    if isequal(o.ndat(),1)
+        l = false(p.ndat(),1);
+        for i=1:p.ndat()
             l(i) = greaterorequal(o.time, p.time(i,:));
         end
     else
-        l = false(o.ndat,1);
-        for i=1:o.ndat
+        l = false(o.ndat(),1);
+        for i=1:o.ndat()
             l(i) = greaterorequal(o.time(i,:), p.time);
         end
     end

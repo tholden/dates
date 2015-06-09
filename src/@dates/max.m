@@ -8,7 +8,7 @@ function q = max(varargin)  % --*-- Unitary tests --*--
 % OUTPUTS 
 % - q [dates]
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -32,8 +32,7 @@ switch nargin
     sorted_time_member = sortrows(varargin{1}.time);
     q = dates();
     q.freq = varargin{1}.freq;
-    q.ndat = 1;
-    q.time = sorted_time_member(varargin{1}.ndat,:);
+    q.time = sorted_time_member(varargin{1}.ndat(),:);
   otherwise
     q = max(horzcat(varargin{:}));
 end

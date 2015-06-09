@@ -14,7 +14,7 @@ function q = colon(varargin) % --*-- Unitary tests --*--
 % 1. p must be greater than o if d>0.
 % 2. p and q are dates objects with one element.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -78,7 +78,6 @@ q.freq = o.freq;
 
 if isequal(q.freq, 1)
     % Yearly
-    q.ndat = m;
     q.time = NaN(m,2);
     q.time(:,1) = o.time(1)+transpose(0:d:n-1);
     q.time(:,2) = 1;
@@ -106,9 +105,6 @@ else
     end
     if d>1
         q.time = q.time(1:d:n,:);
-        q.ndat = m;
-    else
-        q.ndat = n;
     end
 end
 

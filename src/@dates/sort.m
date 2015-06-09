@@ -8,7 +8,7 @@ function o = sort(o) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - o [dates] with dates sorted by increasing order.
 
-% Copyright (C) 2011-2014 Dynare Team
+% Copyright (C) 2011-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ function o = sort(o) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if isequal(o.ndat,1)
+if isequal(o.ndat(),1)
     return
 end
 
@@ -39,7 +39,6 @@ o.time = sortrows(o.time,[1,2]);
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
 %$ e.freq = 4;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
@@ -48,7 +47,7 @@ o.time = sortrows(o.time,[1,2]);
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1) == d.ndat();
 %$ T = all(t);
 %@eof:1
 
@@ -62,7 +61,6 @@ o.time = sortrows(o.time,[1,2]);
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
 %$ e.freq = 4;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
@@ -71,6 +69,6 @@ o.time = sortrows(o.time,[1,2]);
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = size(e.time,1) == d.ndat();
 %$ T = all(t);
 %@eof:1

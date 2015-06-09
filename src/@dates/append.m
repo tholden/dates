@@ -9,7 +9,7 @@ function o = append(o, d) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - o [dates] dates object containing dates defined in o and d.
 
-% Copyright (C) 2012-2014 Dynare Team
+% Copyright (C) 2012-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -39,7 +39,6 @@ if ~isequal(o.freq, d.freq)
     error('dates:append:ArgCheck','dates must have common frequency!')
 end
 
-o.ndat = o.ndat+1;
 o.time = [o.time; d.time];
 
 %@test:1
@@ -53,7 +52,6 @@ o.time = [o.time; d.time];
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
@@ -62,7 +60,6 @@ o.time = [o.time; d.time];
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
 %$ T = all(t);
 %@eof:1
 
@@ -77,7 +74,6 @@ o.time = [o.time; d.time];
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
@@ -86,6 +82,5 @@ o.time = [o.time; d.time];
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
 %$ T = all(t);
 %@eof:2

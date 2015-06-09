@@ -11,7 +11,7 @@ function q = setdiff(o,p) % --*-- Unitary tests --*--
 %
 % See also pop, remove.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -51,7 +51,6 @@ if isempty(time)
 end
 
 q.time = time;
-q.ndat = rows(time); 
 
 %@test:1
 %$ % Define some dates objects

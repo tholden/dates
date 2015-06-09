@@ -13,7 +13,7 @@ function B = subsref(A,S) % --*-- Unitary tests --*--
 % 1. The type of the returned argument depends on the content of S.
 % 2. See the matlab's documentation about the subsref method.
 
-% Copyright (C) 2011-2014 Dynare Team
+% Copyright (C) 2011-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -31,12 +31,12 @@ function B = subsref(A,S) % --*-- Unitary tests --*--
 switch S(1).type
   case '.'
     switch S(1).subs
-      case {'time','freq','ndat'}% Access public members.
+      case {'time','freq'}% Access public members.
         if length(S)>1 && isequal(S(2).type,'()') && isempty(S(2).subs)
             error(['dates::subsref: ' S(1).subs ' is not a method but a member!'])
         end
         B = builtin('subsref', A, S(1));
-      case {'sort','unique','double','isempty','length','char'}% Public methods (without input arguments)
+      case {'sort','unique','double','isempty','length','char','ndat'}% Public methods (without input arguments)
         B = feval(S(1).subs,A);
         if length(S)>1 && isequal(S(2).type,'()') && isempty(S(2).subs)
            S = shiftS(S,1);
@@ -94,7 +94,6 @@ switch S(1).type
                 else
                     error('dates::subsref: This is a bug!')
                 end
-                B.ndat = rows(B.time);
             elseif isequal(length(S(1).subs),3)
                 % If three inputs are provided, the second and third inputs are column verctors of integers (years and subperiods).
                 if ~iscolumn(S(1).subs{2}) && ~all(isint(S(1).subs{2}))
@@ -109,7 +108,6 @@ switch S(1).type
                     error('dates::subsref: Second and third input arguments must have the same number of elements!')
                 end
                 B.time = [S(1).subs{2}, S(1).subs{3}];
-                B.ndat = rows(B.time);
             else
                 error('dates::subsref: Wrong calling sequence!')
             end
@@ -130,7 +128,6 @@ switch S(1).type
                     error('dates::subsref: First and second argument must have the same number of rows!')
                 end
                 B.time = [S(1).subs{1}, S(1).subs{2}];
-                B.ndat = rows(B.time);
             elseif isequal(length(S(1).subs),1)
                 [n, m] = size(S(1).subs{1});
                 if ~isequal(m,2) && ~isequal(B.freq,1)
@@ -149,20 +146,18 @@ switch S(1).type
                 else
                     error('dates::subsref: This is a bug!')
                 end
-                B.ndat = rows(B.time);
             else
                 error('dates::subsref: Wrong number of inputs!')
             end
         end
     else
         % dates object A is not empty. We extract some dates
-        if isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat)
+        if isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat())
             B = dates();
             B.freq = A.freq;
             B.time = A.time(S(1).subs{1},:);
-            B.ndat = rows(B.time);
         else
-            error(['dates::subsref: indices has to be a vector of positive integers less than or equal to ' int2str(A.ndat) '!'])
+            error(['dates::subsref: indices has to be a vector of positive integers less than or equal to ' int2str(A.ndat()) '!'])
         end
     end
   otherwise
@@ -190,7 +185,7 @@ end
 %$ if t(1)
 %$     t(2) = dassert(d.freq,B.freq);
 %$     t(3) = dassert(d.time,[1950 2; 1950 3]);
-%$     t(4) = dassert(d.ndat,2);
+%$     t(4) = dassert(d.ndat(),2);
 %$ end
 %$ T = all(t);
 %@eof:1
@@ -212,7 +207,7 @@ end
 %$ if t(1)
 %$     t(2) = dassert(d.freq,B.freq);
 %$     t(3) = dassert(d.time,[1950 2; 1950 3]);
-%$     t(4) = dassert(d.ndat,2);
+%$     t(4) = dassert(d.ndat(),2);
 %$ end
 %$ T = all(t);
 %@eof:2
@@ -234,7 +229,7 @@ end
 %$ if t(1)
 %$     t(2) = dassert(d.freq,B.freq);
 %$     t(3) = dassert(d.time,[1950 2; 1950 3]);
-%$     t(4) = dassert(d.ndat,2);
+%$     t(4) = dassert(d.ndat(),2);
 %$ end
 %$ T = all(t);
 %@eof:3
@@ -255,7 +250,7 @@ end
 %$ if t(1)
 %$     t(2) = dassert(d.freq,B.freq);
 %$     t(3) = dassert(d.time,[1950 2]);
-%$     t(4) = dassert(d.ndat,1);
+%$     t(4) = dassert(d.ndat(),1);
 %$ end
 %$ T = all(t);
 %@eof:4

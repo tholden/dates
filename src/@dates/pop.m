@@ -15,7 +15,7 @@ function o = pop(o, p) % --*-- Unitary tests --*--
 %
 % See also remove, setdiff.
     
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ end
     
 if nargin<2
     % Remove last date
-    o.ndat = o.ndat-1;
     o.time = o.time(1:end-1,:);
     return
 end
@@ -50,9 +49,8 @@ if ischar(p)
 end
 
 if isnumeric(p)
-    idx = find(transpose(1:o.ndat)~=p);
+    idx = find(transpose(1:o.ndat())~=p);
     o.time = o.time(idx,:);
-    o.ndat = o.ndat-1;
 else
     if ~isequal(o.freq,p.freq)
         error('dates:pop','Inputs must have common frequency!')
@@ -64,9 +62,8 @@ else
         return
     end
     idx = find(o==p);
-    jdx = find(transpose(1:o.ndat)~=idx(end));
+    jdx = find(transpose(1:o.ndat())~=idx(end));
     o.time = o.time(jdx,:);
-    o.ndat = o.ndat-1;
 end
 
 %@test:1
@@ -80,7 +77,6 @@ end
 %$ % Define expected results
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
-%$ e.ndat = 5;
 %$
 %$ % Call the tested routine
 %$ d = dates(B4,B3,B2,B1);
@@ -88,16 +84,16 @@ end
 %$ d.pop();
 %$ t(1) = dassert(d.time,e.time(1:end-1,:));
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat-1);
+%$ t(3) = size(e.time,1)-1==d.ndat();
 %$ f = copy(d);
 %$ d.pop(B1);
 %$ t(4) = dassert(d.time,[1945 3; 1950 1; 1950 2]);
 %$ t(5) = dassert(d.freq,e.freq);
-%$ t(6) = dassert(d.ndat,e.ndat-2);
+%$ t(6) = size(e.time,1)-2==d.ndat();
 %$ f.pop(dates(B1));
 %$ t(7) = dassert(f.time,[1945 3; 1950 1; 1950 2]);
 %$ t(8) = dassert(f.freq,e.freq);
-%$ t(9) = dassert(f.ndat,e.ndat-2);
+%$ t(9) = size(e.time,1)-2==f.ndat();
 %$
 %$ % Check the results.
 %$ T = all(t);

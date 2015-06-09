@@ -9,7 +9,7 @@ function l = eq(varargin) % --*-- Unitary tests --*--
 % OUTPUTS
 % - l [logical] column vector of max(n,1) elements (zeros or ones).
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ function l = eq(varargin) % --*-- Unitary tests --*--
 
 [o, p] = comparison_arg_checks(varargin{:});
 
-if isequal(o.ndat, p.ndat)
+if isequal(o.ndat(), p.ndat())
     l = logical(transpose(all(transpose(eq(o.time,p.time)))));
 else
     l = logical(transpose(all(transpose(bsxfun(@eq,o.time,p.time)))));

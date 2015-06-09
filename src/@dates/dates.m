@@ -16,16 +16,14 @@ classdef dates<handle
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
     properties
-        ndat = []; % Number of dates (integer scalar)
         freq = []; % Frequency (integer scalar)
-        time = []; % Array (ndat rows and two columns)
+        time = []; % Array (one row for every date. first column is the year, second is the period)
     end
-    
+
     methods
         function o = dates(varargin)
             if ~nargin
                 % Returns empty dates object.
-                o.ndat = 0;
                 o.freq = NaN(0);
                 o.time = NaN(0,2);
                 return
@@ -43,8 +41,7 @@ classdef dates<handle
                 else
                     error('dates:ArgCheck', 'All dates passed as inputs must have the same frequency!')
                 end
-                o.ndat = length(tmp);
-                o.time = transpose(reshape([tmp.time],2,o.ndat));
+                o.time = transpose(reshape([tmp.time], 2, length(tmp)));
                 return
             end
             if isequal(nargin,1) && isfreq(varargin{1})
@@ -68,7 +65,6 @@ classdef dates<handle
                     if isnumeric(varargin{3}) && isvector(varargin{3}) && all(isint(varargin{3}))
                         if all(varargin{3}>=1) && all(varargin{3}<=o.freq)
                             o.time = [varargin{2}(:), varargin{3}(:)];
-                            o.ndat = size(o.time,1);
                         else
                             error('dates:ArgCheck','Third input must contain integers between 1 and %i.', o.freq)
                         end
@@ -90,7 +86,6 @@ classdef dates<handle
                 if isequal(o.freq, 1)
                     if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
                         o.time = [varargin{2}, ones(length(varargin{2}),1)];
-                        o.ndat = size(o.time,1);
                         return
                     else
                         error('dates:ArgCheck','Second input must be a vector of integers.')
@@ -100,7 +95,6 @@ classdef dates<handle
                         if all(isint(varargin{2}(:,1))) && all(isint(varargin{2}(:,1)))
                             if all(varargin{2}(:,2)>=1) && all(varargin{2}(:,2)<=o.freq)
                                 o.time = [varargin{2}(:,1), varargin{2}(:,2)];
-                                o.ndat = size(o.time,1);
                             else
                                 error('dates:ArgCheck','Second column of the last input must contain integers between 1 and %i.',o.freq)
                             end
@@ -129,7 +123,6 @@ end % classdef
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 2; 1950 1; 1953 4];
 %$ e.freq = 4;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
@@ -137,7 +130,7 @@ end % classdef
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = dassert(d.ndat(),e.ndat());
 %$ T = all(t);
 %@eof:1
 
@@ -151,7 +144,6 @@ end % classdef
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 2; 1950 10; 1953 12];
 %$ e.freq = 12;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
@@ -159,7 +151,7 @@ end % classdef
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = dassert(d.ndat(),e.ndat());
 %$ T = all(t);
 %@eof:2
 
@@ -173,7 +165,6 @@ end % classdef
 %$ % Define expected results.
 %$ e.time = [1945 1; 1950 1; 1950 1; 1953 1];
 %$ e.freq = 1;
-%$ e.ndat = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
@@ -181,7 +172,7 @@ end % classdef
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat,e.ndat);
+%$ t(3) = dassert(d.ndat(),e.ndat());
 %$ T = all(t);
 %@eof:3
 

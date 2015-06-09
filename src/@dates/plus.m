@@ -14,7 +14,7 @@ function q = plus(o,p) % --*-- Unitary tests --*--
 % 2. If  one of the inputs is an integer or a vector of integers, the method shifts the dates
 %    object by X (the interger input) periods forward.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -45,22 +45,19 @@ if isa(o,'dates') && isa(p,'dates')
     q = dates();
     q.freq = o.freq;
     q.time = [o.time; p.time];
-    q.ndat = o.ndat+p.ndat;
 elseif isa(o,'dates') || isa(p,'dates')
-    if isa(o,'dates') && ((isvector(p) && isequal(length(p),o.ndat) && all(isint(p))) || ...
+    if isa(o,'dates') && ((isvector(p) && isequal(length(p),o.ndat()) && all(isint(p))) || ...
                           (isequal(o.length(),1) && isvector(p) && all(isint(p))) || ...
                           (isscalar(p) && isint(p)))
         q = dates();
         q.freq = o.freq;
         q.time = add_periods_to_array_of_dates(o.time, q.freq, p(:));
-        q.ndat = rows(q.time);
-    elseif isa(p,'dates') && ((isvector(o) && isequal(length(o),p.ndat) && all(isint(o))) || ...
+    elseif isa(p,'dates') && ((isvector(o) && isequal(length(o),p.ndat()) && all(isint(o))) || ...
                               (isequal(p.length(),1) && isvector(o) && all(isint(o))) || ...
                               (isscalar(o) && isint(o)) )
         q = dates();
         q.freq = p.freq;
         q.time = add_periods_to_array_of_dates(p.time, q.freq, o(:));
-        q.ndat = rows(q.time);
     else
         error('dates:plus:ArgCheck','Please read the manual.')
     end

@@ -8,7 +8,7 @@ function p = copy(o)
 % OUTPUTS
 % - p [dates]
 
-% Copyright (C) 2014 Dynare Team
+% Copyright (C) 2014-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -25,5 +25,4 @@ function p = copy(o)
 
 p = dates();
 p.freq = o.freq;
-p.ndat = o.ndat;
 p.time = o.time;

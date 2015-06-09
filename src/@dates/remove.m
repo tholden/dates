@@ -15,7 +15,7 @@ function o = remove(o, p) % --*-- Unitary tests --*--
 %
 % See also pop, setdiff
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -49,7 +49,6 @@ else
 end
 
 o.time = time;
-o.ndat = rows(time);
 
 %@test:1
 %$ % Define some dates objects

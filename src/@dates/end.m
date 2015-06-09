@@ -10,7 +10,7 @@ function lastIndex = end(o, k, n)
 % OUTPUTS
 %   lastIndex [integer] last dates index
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -26,4 +26,4 @@ function lastIndex = end(o, k, n)
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 assert(k==1 && n==1, 'dates:end:ArgCheck', 'dates only has one dimension');
-lastIndex = o.ndat;
+lastIndex = o.ndat();

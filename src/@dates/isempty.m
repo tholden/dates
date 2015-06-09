@@ -8,7 +8,7 @@ function l = isempty(o) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - l [logical]
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@ function l = isempty(o) % --*-- Unitary tests --*--
 %
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
-    
-l = isequal(o.ndat,0);
+
+l = isequal(o.ndat(),0);
 
 %@test:1
 %$ % Instantiate an empty dates object

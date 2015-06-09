@@ -18,7 +18,7 @@ function q = minus(o,p) % --*-- Unitary tests --*--
 %    p periods backward.
 % 3. If o is not a dates object, an error is returned.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -44,11 +44,9 @@ if isa(o,'dates') && isa(p,'dates')
     v = copy(p);
     if ~isequal(u.length(),v.length())
         if isequal(u.length(),1)
-            u.time = repmat(u.time,v.ndat,1);
-            u.ndat = v.ndat;
+            u.time = repmat(u.time,v.ndat(),1);
         elseif isequal(v.length(),1)
-            v.time = repmat(v.time,u.ndat,1);
-            v.ndat = u.ndat;
+            v.time = repmat(v.time,u.ndat(),1);
         else
             error('dates:minus:ArgCheck','Input arguments lengths are not consistent!')
         end
@@ -59,11 +57,10 @@ if isa(o,'dates') && isa(p,'dates')
         q(id) = u.time(id,2)-v.time(id,2) + (u.time(id,1)-v.time(id,1))*v.freq;
     end
 elseif isa(o,'dates') && ~isa(p,'dates')
-    if (isvector(p) && isequal(length(p),o.ndat) && all(isint(p))) || (isscalar(p) && isint(p)) || (isequal(o.length(),1) && isvector(p) && all(isint(p)))
+    if (isvector(p) && isequal(length(p),o.ndat()) && all(isint(p))) || (isscalar(p) && isint(p)) || (isequal(o.length(),1) && isvector(p) && all(isint(p)))
         q = dates();
         q.freq = o.freq;
         q.time = add_periods_to_array_of_dates(o.time, o.freq, -p(:));
-        q.ndat = rows(q.time);
     else
         error('dates:minus:ArgCheck','Second argument has to be a vector of integers or scalar integer. You should read the manual.')
     end
