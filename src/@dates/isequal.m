@@ -28,17 +28,7 @@ if ~isa(o,'dates') || ~isa(p,'dates')
     error('dates:isequal:ArgCheck','Both inputs must be dates objects!')
 end
 
-if ~isequal(o.freq, p.freq)
-    l = false;
-    return
-end
-
-if ~isequal(o.ndat(), p.ndat())
-    l = false;
-    return
-end
-
-l = isequal(o.time, p.time);
+l = isequal(o.freq, p.freq) && isequal(o.time, p.time);
 
 %@test:1
 %$ d1 = dates('1938Q1');
