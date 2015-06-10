@@ -1,8 +1,8 @@
 function C = isequal(A, B, fake)
 
 % Overloads isequal function for dates objects.
-    
-% Copyright (C) 2013 Dynare Team
+
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This file is part of Dynare.
 %
@@ -23,14 +23,4 @@ if ~isa(A,'dates') || ~isa(B,'dates')
     error('dates::isequal: Both inputs must be dates objects!')
 end
 
-if ~isequal(A.freq, B.freq)
-    C = 0;
-    return
-end
-
-if ~isequal(A.ndat, B.ndat)
-    C = 0;
-    return
-end
-
-C = isequal(A.time,B.time);
+C = isequal(A.freq, B.freq) && isequal(A.ndat, B.ndat) && isequal(A.time,B.time);
