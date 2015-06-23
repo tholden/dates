@@ -67,3 +67,16 @@ q.time = time;
 %$ t(2) = dassert(isempty(c2),true);
 %$ T = all(t);
 %@eof:1
+
+%@test:2
+%$ % Define some dates objects
+%$ d1 = dates('1950Q1'):dates('1969Q4') ;
+%$ d2 = dates('1950Q1'):dates('1969Q4') ;
+%$
+%$ % Call the tested routine.
+%$ c1 = intersect(d1,d2);
+%$
+%$ % Check the results.
+%$ t(1) = dassert(c1,d1);
+%$ T = all(t);
+%@eof:2
