@@ -28,8 +28,8 @@ if ~isa(o,'dates') || ~isa(p,'dates')
     error('dates:intersect:ArgCheck','All input arguments must be dates objects!')
 end
 
-if o.length()==p.length() && o==p
-    q = copy(a);
+if o.length()==p.length() && isequal(o, p)
+    q = copy(o);
     return
 end
 
