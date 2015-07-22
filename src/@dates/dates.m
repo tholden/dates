@@ -22,7 +22,7 @@ classdef dates<handle
 
     methods
         function o = dates(varargin)
-            if ~nargin
+            if ~nargin || ( nargin == 1 && strcmp( varargin{1}, 'initialize' ) )
                 % Returns empty dates object.
                 o.freq = NaN(0);
                 o.time = NaN(0,2);
