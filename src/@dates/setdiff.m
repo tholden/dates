@@ -1,13 +1,14 @@
-function q = setdiff(o,p) % --*-- Unitary tests --*--
+function [q, io] = setdiff(o,p) % --*-- Unitary tests --*--
 
 % Overloads setdiff function for dates objects.
 %
 % INPUTS 
-% - o [dates]
-% - p [dates]
+% - o  [dates]
+% - p  [dates]
 %
 % OUTPUTS 
-% - q [dates]
+% - q  [dates]   with n elements
+% - io [integer] n*1 vector of integers such that q = o(io)
 %
 % See also pop, remove.
 
@@ -36,26 +37,32 @@ end
 
 if isempty(p)
     q = copy(o);
+    if nargout>1, io = 1:length(q); end
     return
 end
 
 if o==p
     % Return an empty dates object.
     q = dates(o.freq);
+    if nargout>1, io = []; end
     return
 end
 
 if isoctave || matlab_ver_less_than('8.1.0')
-    time = setdiff(o.time,p.time,'rows');
+    if nargout<2
+        time = setdiff(o.time,p.time,'rows');
+    else
+        [time, io] = setdiff(o.time,p.time,'rows');
+    end
 else
-    time = setdiff(o.time,p.time,'rows','legacy');
+    if nargout<2
+        time = setdiff(o.time,p.time,'rows','legacy');
+    else
+        [time, io] = setdiff(o.time,p.time,'rows','legacy');
+    end
 end
 
 q = dates(o.freq);
-if isempty(time)
-    return
-end
-
 q.time = time;
 
 %@test:1
