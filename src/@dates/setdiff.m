@@ -41,7 +41,7 @@ if isempty(p)
     return
 end
 
-if o==p
+if isequal(o.length(),p.length()) && isequal(o, p)
     % Return an empty dates object.
     q = dates(o.freq);
     if nargout>1, io = []; end
