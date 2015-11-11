@@ -152,7 +152,9 @@ switch S(1).type
         end
     else
         % dates object A is not empty. We extract some dates
-        if isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat())
+        if ismatrix(S(1).subs{1}) && isempty(S(1).subs{1})
+            B = dates(A.freq);
+        elseif isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat())
             B = dates();
             B.freq = A.freq;
             B.time = A.time(S(1).subs{1},:);
