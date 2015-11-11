@@ -34,6 +34,11 @@ if ~isequal(o.freq,p.freq)
     error('dates;setdiff','All input arguments must have common frequency!')
 end
 
+if isempty(p)
+    q = copy(o);
+    return
+end
+
 if o==p
     q = dates(o.freq);
     return
