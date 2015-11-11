@@ -1,4 +1,4 @@
-function C = setdiff(A,B) % --*-- Unitary tests --*--
+function [C, IA] = setdiff(A,B) % --*-- Unitary tests --*--
 
 %@info:
 %! @deftypefn {Function File} {@var{C} =} setdiff (@var{A},@var{B})
@@ -21,11 +21,13 @@ function C = setdiff(A,B) % --*-- Unitary tests --*--
 %! @table @ @var
 %! @item C
 %! @ref{dates} object.
+%! @item IA
+%! Vector of integers such that C=A(IA).
 %! @end table
 %! @end deftypefn
 %@eod:
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This file is part of Dynare.
 %
@@ -52,21 +54,31 @@ end
 
 if isequal(A,B)
     C = dates(A.freq);
+    if nargout>1, IA = []; end
     return
 end
 
 if isoctave || matlab_ver_less_than('8.1.0')
-    time = setdiff(A.time,B.time,'rows');
+    if nargout<2
+        time = setdiff(A.time,B.time,'rows');
+    else
+        [time, IA] = setdiff(A.time,B.time,'rows');
+    end
 else
-    time = setdiff(A.time,B.time,'rows','legacy');
+    if nargout<2
+        time = setdiff(A.time,B.time,'rows','legacy');
+    else
+        [time, IA] = setdiff(A.time,B.time,'rows','legacy');
+    end
 end
 
-C = dates();
+C = dates(A.freq);
+
 if isempty(time)
+    IA = [];
     return
 end
 
-C.freq = A.freq;
 C.time = time;
 C.ndat = rows(time); 
 
