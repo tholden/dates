@@ -67,22 +67,6 @@ q.time = time;
 
 %@test:1
 %$ % Define some dates objects
-%$ d1 = dates('1950Q1'):dates('1969Q4') ;
-%$ d2 = dates('1960Q1'):dates('1969Q4') ;
-%$ d3 = dates('1970Q1'):dates('1979Q4') ;
-%$
-%$ % Call the tested routine.
-%$ c1 = intersect(d1,d2);
-%$ c2 = intersect(d1,d3);
-%$
-%$ % Check the results.
-%$ t(1) = dassert(c1,d2);
-%$ t(2) = dassert(isempty(c2),logical(1));
-%$ T = all(t);
-%@eof:1
-
-%@test:2
-%$ % Define some dates objects
 %$ d1 = dates('1950Q1'):dates('1950Q4') ;
 %$ d2 = dates('1950Q3'):dates('1950Q4') ;
 %$
@@ -101,9 +85,9 @@ q.time = time;
 %$     t(3) = dassert(d1(i),c2);
 %$ end
 %$ T = all(t);
-%@eof:2
+%@eof:1
 
-%@test:3
+%@test:2
 %$ % Define some dates objects
 %$ d1 = dates('1950Q1'):dates('1950Q4') ;
 %$ d2 = dates('1950M3'):dates('1950M4') ;
@@ -117,9 +101,9 @@ q.time = time;
 %$ end
 %$
 %$ T = all(t);
-%@eof:3
+%@eof:2
 
-%@test:4
+%@test:3
 %$ % Define some dates objects
 %$ d = dates('1950Q1'):dates('1950Q4') ;
 %$
@@ -132,9 +116,9 @@ q.time = time;
 %$ end
 %$
 %$ T = all(t);
-%@eof:4
+%@eof:3
 
-%@test:5
+%@test:4
 %$ % Define some dates objects
 %$ d1 = dates('1950Q1'):dates('1950Q4') ;
 %$ d2 = dates('1951Q3'):dates('1951Q4') ;
@@ -154,9 +138,9 @@ q.time = time;
 %$     t(3) = dassert(isequal(c1,d1(i)),true);
 %$ end
 %$ T = all(t);
-%@eof:5
+%@eof:4
 
-%@test:6
+%@test:5
 %$ % Define some dates objects
 %$ d1 = dates('1950Q1'):dates('1950Q4') ;
 %$
