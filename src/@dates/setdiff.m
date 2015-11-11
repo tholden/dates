@@ -43,18 +43,19 @@ function C = setdiff(A,B) % --*-- Unitary tests --*--
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 if ~isa(A,'dates') || ~isa(B,'dates')
-    error(['dates::plus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' must be dates objects!'])
+    error(['dates::plus: Input arguments ''' inputname(1) ''' and ''' inputname(2) ''' must be dates objects!']);
 end
+
+if ~isequal(A.freq,B.freq)
+    error('dates::setdiff','All input arguments must have common frequency!');
+end
+
 
 if eq(A,B)
     C = A;
     return
 end
 
-if ~isequal(A.freq,B.freq)
-    C = dates();
-    return
-end
 
 if isoctave || matlab_ver_less_than('8.1.0')
     time = setdiff(A.time,B.time,'rows');
