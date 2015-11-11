@@ -40,6 +40,7 @@ if isempty(p)
 end
 
 if o==p
+    % Return an empty dates object.
     q = dates(o.freq);
     return
 end
