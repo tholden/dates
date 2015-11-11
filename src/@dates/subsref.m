@@ -327,3 +327,22 @@ end
 %$ T = all(t);
 %@eof:6
 
+%@test:7
+%$ % Define a dates object
+%$ B = dates('1950Q1','1950Q2','1950Q3','1950Q4','1951Q1');
+%$
+%$ % Try to extract a sub-dates object.
+%$ try
+%$     d = B([]);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(isa(d,'dates'), true);
+%$     t(3) = dassert(isempty(d), true);
+%$ end
+%$ T = all(t);
+%@eof:7
+
