@@ -80,3 +80,100 @@ q.time = time;
 %$ t(2) = dassert(isempty(c2),logical(1));
 %$ T = all(t);
 %@eof:1
+
+%@test:2
+%$ % Define some dates objects
+%$ d1 = dates('1950Q1'):dates('1950Q4') ;
+%$ d2 = dates('1950Q3'):dates('1950Q4') ;
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c1 = setdiff(d1,d2);
+%$     [c2, i] = setdiff(d1,d2);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(c1,c2);
+%$     t(3) = dassert(d1(i),c2);
+%$ end
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ % Define some dates objects
+%$ d1 = dates('1950Q1'):dates('1950Q4') ;
+%$ d2 = dates('1950M3'):dates('1950M4') ;
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c1 = setdiff(d1,d2);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ % Define some dates objects
+%$ d = dates('1950Q1'):dates('1950Q4') ;
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c1 = setdiff(d,1);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ % Define some dates objects
+%$ d1 = dates('1950Q1'):dates('1950Q4') ;
+%$ d2 = dates('1951Q3'):dates('1951Q4') ;
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c1 = setdiff(d1,d2);
+%$     [c2, i] = setdiff(d1,d2);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(isequal(c1,d1),true);
+%$     t(3) = dassert(isequal(c1,d1(i)),true);
+%$ end
+%$ T = all(t);
+%@eof:5
+
+%@test:6
+%$ % Define some dates objects
+%$ d1 = dates('1950Q1'):dates('1950Q4') ;
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c1 = setdiff(d1,d1);
+%$     [c2, i] = setdiff(d1,d1);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(isempty(c1),true);
+%$     t(3) = dassert(isempty(c2),true);
+%$     t(4) = dassert(isempty(i),true);
+%$ end
+%$ T = all(t);
+%@eof:5
