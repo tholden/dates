@@ -50,12 +50,10 @@ if ~isequal(A.freq,B.freq)
     error('dates::setdiff','All input arguments must have common frequency!');
 end
 
-
-if eq(A,B)
-    C = A;
+if isequal(A,B)
+    C = dates(A.freq);
     return
 end
-
 
 if isoctave || matlab_ver_less_than('8.1.0')
     time = setdiff(A.time,B.time,'rows');
