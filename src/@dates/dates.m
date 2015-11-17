@@ -1,4 +1,4 @@
-classdef dates<handle
+classdef dates<handle % --*-- Unitary tests --*--
 
 % Copyright (C) 2014-2015 Dynare Team
 %
@@ -125,12 +125,12 @@ end % classdef
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
-%$ d = dates(B1,B2,B3,B4);
+%$ d = dates(B1,B2,B3,B4); 
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(1) = dassert(d.time, e.time);
+%$ t(2) = dassert(d.freq, e.freq);
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:1
 
@@ -151,7 +151,7 @@ end % classdef
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:2
 
@@ -170,9 +170,9 @@ end % classdef
 %$ d = dates(B1,B2,B3,B4);
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(1) = dassert(d.time, e.time);
+%$ t(2) = dassert(d.freq, e.freq);
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:3
 
