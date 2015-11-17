@@ -1,6 +1,6 @@
-function o = sort(o) % --*-- Unitary tests --*--
+function o = sort_(o) % --*-- Unitary tests --*--
 
-% Sort method for dates class (with copy).
+% Sort method for dates class (in place modification).
 %
 % INPUTS 
 % - o [dates]
@@ -8,7 +8,7 @@ function o = sort(o) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - o [dates] with dates sorted by increasing order.
 
-% Copyright (C) 2011-2015 Dynare Team
+% Copyright (C) 2015 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -23,8 +23,11 @@ function o = sort(o) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-o = copy(o);
-o.sort_();
+if isequal(o.ndat(),1)
+    return
+end
+
+o.time = sortrows(o.time,[1,2]);
 
 %@test:1
 %$ % Define some dates
@@ -36,16 +39,34 @@ o.sort_();
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
 %$ e.freq = 4;
-%$ f.time = [1953 4; 1950 2; 1950 1; 1945 3];
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
-%$ c = d.sort();
+%$ d.sort_();
 %$ 
 %$ % Check the results.
-%$ t(1) = ~dassert(d.time,e.time);
-%$ t(2) = dassert(c.time,e.time);
-%$ t(3) = dassert(d.freq,e.freq);
-%$ t(4) = dassert(c.freq,e.freq);
+%$ t(1) = dassert(d.time,e.time);
+%$ t(2) = dassert(d.freq,e.freq);
 %$ T = all(t);
 %@eof:1
+
+%@test:2
+%$ % Define some dates
+%$ B1 = '1953Q4';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$
+%$ % Define expected results.
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
+%$ e.freq = 4;
+%$
+%$ % Call the tested routine.
+%$ d = dates(B1,B2,B3,B4);
+%$ c = sort_(d);
+%$ 
+%$ % Check the results.
+%$ t(1) = dassert(d.time,e.time);
+%$ t(2) = dassert(d.freq,e.freq);
+%$ T = all(t);
+%@eof:2
