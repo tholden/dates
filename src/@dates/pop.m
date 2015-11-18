@@ -80,7 +80,7 @@ end
 %$
 %$ % Call the tested routine
 %$ d = dates(B4,B3,B2,B1);
-%$ d.append(dates(B5));
+%$ d.append_(dates(B5));
 %$ d.pop();
 %$ t(1) = dassert(d.time,e.time(1:end-1,:));
 %$ t(2) = dassert(d.freq,e.freq);
@@ -109,7 +109,7 @@ end
 %$
 %$ % Call the tested routine
 %$ d = dates(B1,B2,B3,B4);
-%$ d.append(dates(B5));
+%$ d.append_(dates(B5));
 %$ d.pop();
 %$ t(1) = dassert(d,dates(B1,B2,B3,B4));
 %$ d.pop(B1);

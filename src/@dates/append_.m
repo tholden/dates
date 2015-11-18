@@ -1,6 +1,6 @@
-function o = append(o, d) % --*-- Unitary tests --*--
+function o = append_(o, d) % --*-- Unitary tests --*--
 
-% append method for dates class.
+% append method for dates class (in place modification).
 %
 % INPUTS 
 % - o [dates]
@@ -26,7 +26,7 @@ function o = append(o, d) % --*-- Unitary tests --*--
 
 if isa(d, 'dates')
     if ~isequal(length(d), 1)
-        error('dates:append:ArgCheck','Input argument %s has to be a dates object with one element.', inputname(2))
+        error('dates:append_:ArgCheck','Input argument %s has to be a dates object with one element.', inputname(2))
     end
     if isempty(d)
         return
@@ -36,11 +36,10 @@ elseif isdate(d)
 end
 
 if ~isequal(o.freq, d.freq)
-    error('dates:append:ArgCheck','dates must have common frequency!')
+    error('dates:append_:ArgCheck','dates must have common frequency!')
 end
 
-o = copy(o);
-o.append_(d);
+o.time = [o.time; d.time];
 
 %@test:1
 %$ % Define some dates
@@ -51,13 +50,13 @@ o.append_(d);
 %$ B5 = '2009Q2';
 %$
 %$ % Define expected results.
-%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
 %$ try
-%$     d.append(dates(B5));
+%$     d.append_(dates(B5));
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -77,17 +76,16 @@ o.append_(d);
 %$ B2 = '1950Q2';
 %$ B3 = '1950Q1';
 %$ B4 = '1945Q3';
-%$ B5 = '2009q2';
+%$ B5 = '2009Q2';
 %$
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
-%$ f.time = [1945 3; 1950 1; 1950 2; 1953 4];
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
 %$ try
-%$     c = d.append(B5);
+%$     d.append_(B5);
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -95,10 +93,8 @@ o.append_(d);
 %$
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(d.time,f.time);
-%$     t(3) = dassert(c.time,e.time);
-%$     t(4) = dassert(c.freq,e.freq);
-%$     t(5) = dassert(d.freq,e.freq);
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
 %$ end
 %$ T = all(t);
 %@eof:2
@@ -109,17 +105,16 @@ o.append_(d);
 %$ B2 = '1950Q2';
 %$ B3 = '1950Q1';
 %$ B4 = '1945Q3';
-%$ B5 = '2009q2';
+%$ B5 = '2009Q2';
 %$
 %$ % Define expected results.
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
-%$ f.time = [1945 3; 1950 1; 1950 2; 1953 4];
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
 %$ d = dates(B4,B3,B2,B1);
 %$ try
-%$     c = append(d, B5);
+%$     c = d.append_(B5);
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -127,10 +122,68 @@ o.append_(d);
 %$
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(d.time,f.time);
+%$     t(2) = dassert(d.time,e.time);
 %$     t(3) = dassert(c.time,e.time);
-%$     t(4) = dassert(c.freq,e.freq);
-%$     t(5) = dassert(d.freq,e.freq);
+%$     t(4) = dassert(d.freq,e.freq);
+%$     t(5) = dassert(c.freq,e.freq);
 %$ end
 %$ T = all(t);
 %@eof:3
+
+
+%@test:4
+%$ % Define some dates
+%$ B1 = '1953Q4';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$ B5 = '2009Q2';
+%$
+%$ % Call the tested routine.
+%$ d = dates(B4,B3);
+%$ e = dates(B1,B2,B5);
+%$ try
+%$     d.append_(e);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ % Define some dates
+%$ B = '1950Q2';
+%$
+%$ % Call the tested routine.
+%$ d = dates(B);
+%$ try
+%$     d.append_('1950Q3');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(d.time, [1950 2; 1950 3]);
+%$ end
+%$
+%$ T = all(t);
+%@eof:5
+
+%@test:6
+%$ % Define some dates
+%$ B = '1950Q2';
+%$
+%$ % Call the tested routine.
+%$ d = dates(B);
+%$ try
+%$     d.append_('1950Z3');
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:6
