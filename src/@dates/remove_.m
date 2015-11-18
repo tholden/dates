@@ -57,10 +57,18 @@ o.time = time;
 %$ f = dates('1950Q1'):dates('1950Q4');
 %$
 %$ % Call the tested routine.
-%$ d.remove_(e);
+%$ try
+%$     d.remove_(e);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d,f);
+%$ if t(1)
+%$     t(2) = dassert(d,f);
+%$ end
+%$
 %$ T = all(t);
 %@eof:1
 
@@ -71,9 +79,17 @@ o.time = time;
 %$ f = dates('1950Q2');
 %$
 %$ % Call the tested routine.
-%$ d.remove_(e);
+%$ try
+%$     d.remove_(e);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d,f);
+%$ if t(1)
+%$     t(2) = dassert(d,f);
+%$ end
+%$
 %$ T = all(t);
 %@eof:2

@@ -53,11 +53,19 @@ o.remove_(p);
 %$ g = copy(d);
 %$
 %$ % Call the tested routine.
-%$ c = d.remove(e);
+%$ try
+%$     c = d.remove(e);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$ 
 %$ % Check the results.
-%$ t(1) = dassert(c,f);
-%$ t(2) = dassert(d,g);
+%$ if t(1)
+%$     t(2) = dassert(c,f);
+%$     t(3) = dassert(d,g);
+%$ end
+%$
 %$ T = all(t);
 %@eof:1
 
@@ -68,9 +76,17 @@ o.remove_(p);
 %$ f = dates('1950Q2');
 %$
 %$ % Call the tested routine.
-%$ c = d.remove(e);
+%$ try
+%$     c = d.remove(e);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$
 %$ % Check the results.
-%$ t(1) = dassert(c,f);
+%$ if t(1)
+%$     t(2) = dassert(c,f);
+%$ end
+%$
 %$ T = all(t);
 %@eof:2
