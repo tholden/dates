@@ -41,7 +41,7 @@ switch S(1).type
         if length(S)>1 && isequal(S(2).type,'()') && isempty(S(2).subs)
            S = shiftS(S,1);
         end
-      case {'append','append_','pop','pop_','remove'}% Public methods (with arguments).
+      case {'append','append_','pop','pop_','remove','remove_'}% Public methods (with arguments).
         if isequal(S(2).type,'()')
             B = feval(S(1).subs,A,S(2).subs{:});
             S = shiftS(S,1);
