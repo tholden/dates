@@ -42,11 +42,18 @@ o.time = sortrows(o.time,[1,2]);
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
-%$ d.sort_();
+%$ try
+%$     d.sort_();
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$ 
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
+%$ if t(1)
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
+%$ end
 %$ T = all(t);
 %@eof:1
 
@@ -63,10 +70,17 @@ o.time = sortrows(o.time,[1,2]);
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
-%$ c = sort_(d);
+%$ try
+%$     c = sort_(d);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$ 
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
+%$ if t(1)
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
+%$ end
 %$ T = all(t);
 %@eof:2

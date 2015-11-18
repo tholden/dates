@@ -40,12 +40,50 @@ o.sort_();
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
-%$ c = d.sort();
+%$ try
+%$     c = d.sort();
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$ 
 %$ % Check the results.
-%$ t(1) = ~dassert(d.time,e.time);
-%$ t(2) = dassert(c.time,e.time);
-%$ t(3) = dassert(d.freq,e.freq);
-%$ t(4) = dassert(c.freq,e.freq);
+%$ if t(1)
+%$     t(2) = dassert(d.time,f.time);
+%$     t(3) = dassert(c.time,e.time);
+%$     t(4) = dassert(d.freq,e.freq);
+%$     t(5) = dassert(c.freq,e.freq);
+%$ end
 %$ T = all(t);
 %@eof:1
+
+%@test:2
+%$ % Define some dates
+%$ B1 = '1953Q4';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$
+%$ % Define expected results.
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4];
+%$ e.freq = 4;
+%$ f.time = [1953 4; 1950 2; 1950 1; 1945 3];
+%$
+%$ % Call the tested routine.
+%$ d = dates(B1,B2,B3,B4);
+%$ try
+%$     c = sort(d);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$ 
+%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(d.time,f.time);
+%$     t(3) = dassert(c.time,e.time);
+%$     t(4) = dassert(d.freq,e.freq);
+%$     t(5) = dassert(c.freq,e.freq);
+%$ end
+%$ T = all(t);
+%@eof:2
