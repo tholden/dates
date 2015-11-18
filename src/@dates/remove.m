@@ -90,3 +90,52 @@ o.remove_(p);
 %$
 %$ T = all(t);
 %@eof:2
+
+%@test:3
+%$ % Define some dates objects
+%$ d = dates('1950Q1','1950Q2','1950Q1');
+%$ e = dates('1950Q1');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c = d.remove();
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ % Define some dates objects
+%$ d = dates('1950Q1','1950Q2','1950Q1');
+%$ e = '1950Q1';
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c = d.remove(e);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ % Define some dates objects
+%$ d = dates('1950Q1','1950Q2','1950Q1');
+%$ e = dates('1950M1');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     c = d.remove();
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:5
+
