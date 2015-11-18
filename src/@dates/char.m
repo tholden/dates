@@ -1,4 +1,4 @@
-function s = char(o)
+function s = char(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
@@ -28,3 +28,94 @@ if length(o)>1
 end
 
 s = date2string(o.time, o.freq);
+
+%@test:1
+%$ % Define a dates object
+%$ o = dates('1950Q1');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     str = char(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str,'1950Q1');
+%$ end
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ % Define a dates object
+%$ o = dates('1950M1');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     str = char(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str,'1950M1');
+%$ end
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ % Define a dates object
+%$ o = dates('1950W50');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     str = char(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str,'1950W50');
+%$ end
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ % Define a dates object
+%$ o = dates('1950Y');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     str = char(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str,'1950Y');
+%$ end
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ % Define a dates object
+%$ o = dates('1950A');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     str = char(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str,'1950Y');
+%$ end
+%$ T = all(t);
+%@eof:5
+
