@@ -1,4 +1,4 @@
-function s = ndat(o)
+function s = ndat(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
@@ -24,3 +24,77 @@ function s = ndat(o)
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 s = size(o.time, 1);
+
+%@test:1
+%$ % Define a dates object
+%$ o = dates('1950Q1'):dates('1952Q1');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     card = ndat(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(card,9);
+%$ end
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ % Define a dates object
+%$ o = dates('1950M1'):dates('1951M6');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     card = ndat(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(card,18);
+%$ end
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ % Define a dates object
+%$ o = dates('1950W1'):dates('1950W16');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     card = ndat(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(card,16);
+%$ end
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ % Define a dates object
+%$ o = dates('1950Y'):dates('1959Y');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     card = ndat(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(card,10);
+%$ end
+%$ T = all(t);
+%@eof:4
+
+
