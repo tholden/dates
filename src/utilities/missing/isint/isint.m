@@ -1,4 +1,4 @@
-function [l,c,d] = isint(a)
+function [l,c,d] = isint(a) % --*-- Unitary tests --*--
 
 %  This function tests if the input argument is an integer.
 %
@@ -40,6 +40,6 @@ end
 l = abs(fix(a)-a)<1e-15;
 
 if nargout>1
-    c = find(b==1);
-    d = find(b==0);
+    c = find(l==true);
+    d = find(l==false);
 end
