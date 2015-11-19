@@ -40,6 +40,9 @@ if isequal(nargin,2)
     if ~(isvector(varargin{1}) && isequal(length(varargin{1}),2) && all(isint(varargin{1})) && isscalar(varargin{2} && ismember(varargin{2},[1 4 12 52])))
         error(['dates::format: First input must be a 1*2 vector of integers and second input must be a scalar integer (1, 4, 12 or 52)!'])
     else
+        if varargin{1}(2)>varargin{2} || varargin{1}(2)<1
+            error('dates::format: Second element of the first input be between 1 and %s!',num2str(varargin{2}))
+        end
         time = varargin{1};
         freq = varargin{2};
     end
