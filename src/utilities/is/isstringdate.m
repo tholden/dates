@@ -28,7 +28,7 @@ function b = isstringdate(str)  % --*-- Unitary tests --*--
 if ischar(str)
     b = isquaterly(str) || isyearly(str) || ismonthly(str) || isweekly(str);
 else
-    b = 0;
+    b = false;
 end
 
 %@test:1

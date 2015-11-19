@@ -25,15 +25,15 @@ function B = isfreq(A)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-B = 0;
+B = false;
 
 if ischar(A)
     if isequal(length(A),1) && ismember(upper(A),{'Y','A','Q','M','W'})
-        B = 1;
+        B = true;
         return
     end
 end
 
 if isnumeric(A) && isequal(length(A),1) && ismember(A,[1 4 12 52])
-    B = 1;
+    B = true;
 end

@@ -27,12 +27,12 @@ function b = isweekly(str)  % --*-- Unitary tests --*--
 
 if ischar(str)
     if isempty(regexp(str,'^-?[0-9]*[Ww]([1-9]|[1-4][0-9]|5[0-2])$','once'))
-        b = 0;
+        b = false;
     else
-        b = 1;
+        b = true;
     end
 else
-    b = 0;
+    b = false;
 end
 
 %@test:1
@@ -41,18 +41,18 @@ end
 %$ date_2 = '1950w2';
 %$ date_3 = '-1950w2';
 %$ date_4 = '1950w22';
-%$ date_5 = '1950 azd ';
+%$ date_5 = '1950 azd';
 %$ date_6 = '1950Y';
 %$ date_7 = '1950Q3';
 %$ date_8 = '1950m54';
 %$
-%$ t(1) = dassert(isweekly(date_1),1);
-%$ t(2) = dassert(isweekly(date_2),1);
-%$ t(3) = dassert(isweekly(date_3),1);
-%$ t(4) = dassert(isweekly(date_4),1);
-%$ t(5) = dassert(isweekly(date_5),0);
-%$ t(6) = dassert(isweekly(date_6),0);
-%$ t(7) = dassert(isweekly(date_7),0);
-%$ t(8) = dassert(isweekly(date_8),0);
+%$ t(1) = dassert(isweekly(date_1),true);
+%$ t(2) = dassert(isweekly(date_2),true);
+%$ t(3) = dassert(isweekly(date_3),true);
+%$ t(4) = dassert(isweekly(date_4),true);
+%$ t(5) = dassert(isweekly(date_5),false);
+%$ t(6) = dassert(isweekly(date_6),false);
+%$ t(7) = dassert(isweekly(date_7),false);
+%$ t(8) = dassert(isweekly(date_8),false);
 %$ T = all(t);
 %@eof:1

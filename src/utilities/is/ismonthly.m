@@ -27,12 +27,12 @@ function b = ismonthly(str)  % --*-- Unitary tests --*--
 
 if ischar(str)
     if isempty(regexp(str,'^-?[0-9]*[Mm]([1-9]|1[0-2])$','once'))
-        b = 0;
+        b = false;
     else
-        b = 1;
+        b = true;
     end
 else
-    b = 0;
+    b = false;
 end
 
 %@test:1
@@ -46,13 +46,13 @@ end
 %$ date_7 = '1950Q3';
 %$ date_8 = '1950m24';
 %$
-%$ t(1) = dassert(ismonthly(date_1),1);
-%$ t(2) = dassert(ismonthly(date_2),1);
-%$ t(3) = dassert(ismonthly(date_3),1);
-%$ t(4) = dassert(ismonthly(date_4),1);
-%$ t(5) = dassert(ismonthly(date_5),0);
-%$ t(6) = dassert(ismonthly(date_6),0);
-%$ t(7) = dassert(ismonthly(date_7),0);
-%$ t(8) = dassert(ismonthly(date_8),0);
+%$ t(1) = dassert(ismonthly(date_1),true);
+%$ t(2) = dassert(ismonthly(date_2),true);
+%$ t(3) = dassert(ismonthly(date_3),true);
+%$ t(4) = dassert(ismonthly(date_4),true);
+%$ t(5) = dassert(ismonthly(date_5),false);
+%$ t(6) = dassert(ismonthly(date_6),false);
+%$ t(7) = dassert(ismonthly(date_7),false);
+%$ t(8) = dassert(ismonthly(date_8),false);
 %$ T = all(t);
 %@eof:1

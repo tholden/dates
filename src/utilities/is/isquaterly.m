@@ -27,12 +27,12 @@ function b = isquaterly(str)  % --*-- Unitary tests --*--
 
 if ischar(str)
     if isempty(regexp(str,'^-?[0-9]*[Qq][1-4]$','once'))
-        b = 0;
+        b = false;
     else
-        b = 1;
+        b = true;
     end
 else
-    b = 0;
+    b = false;
 end
 
 %@test:1
@@ -45,12 +45,12 @@ end
 %$ date_6 = '1950Y';
 %$ date_7 = '1950m24';
 %$
-%$ t(1) = dassert(isquaterly(date_1),1);
-%$ t(2) = dassert(isquaterly(date_2),1);
-%$ t(3) = dassert(isquaterly(date_3),1);
-%$ t(4) = dassert(isquaterly(date_4),0);
-%$ t(5) = dassert(isquaterly(date_5),0);
-%$ t(6) = dassert(isquaterly(date_6),0);
-%$ t(7) = dassert(isquaterly(date_7),0);
+%$ t(1) = dassert(isquaterly(date_1),true);
+%$ t(2) = dassert(isquaterly(date_2),true);
+%$ t(3) = dassert(isquaterly(date_3),true);
+%$ t(4) = dassert(isquaterly(date_4),false);
+%$ t(5) = dassert(isquaterly(date_5),false);
+%$ t(6) = dassert(isquaterly(date_6),false);
+%$ t(7) = dassert(isquaterly(date_7),false);
 %$ T = all(t);
 %@eof:1
