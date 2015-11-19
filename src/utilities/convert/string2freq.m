@@ -1,4 +1,4 @@
-function freq = string2freq(s)
+function freq = string2freq(s) % --*-- Unitary tests --*--
 
 % INPUTS 
 %  o s        character, equal to Y, Q, M or W (resp. annual, quaterly, monthly or weekly)
@@ -35,3 +35,35 @@ switch upper(s)
   otherwise
     error('dates::freq2string: Unknown frequency!')
 end
+
+%@test:1
+%$ try
+%$     nY = string2freq('Y');
+%$     nQ = string2freq('Q');
+%$     nM = string2freq('M');
+%$     nW = string2freq('W');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(nY, 1);
+%$     t(3) = dassert(nQ, 4);
+%$     t(4) = dassert(nM, 12);
+%$     t(5) = dassert(nW, 52);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ try
+%$     n = string2freq('Z');
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:2

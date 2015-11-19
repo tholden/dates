@@ -1,4 +1,4 @@
-function [o, p] = comparison_arg_checks(varargin)
+function [o, p] = comparison_arg_checks(varargin) % --*-- Unitary tests --*--
 
 % Returns two dates objects or an error if objects to be compared are not compatible.
 %
@@ -46,3 +46,120 @@ end
 
 o = varargin{1};
 p = varargin{2};
+
+%@test:1
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks(1);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:1
+
+%@test:2
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks('make', 'my', 'day');
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:2
+
+%@test:3
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks('punk', dates('1950Q1'));
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:3
+
+%@test:4
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks(dates('1950Q1'), 1);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:4
+
+%@test:5
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks(dates('1950Q1'), dates('1950M1'));
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:5
+
+%@test:6
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks(dates('1950Q1'):dates('1950Q2'), dates('1950Q1'):dates('1950Q3'));
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:6
+
+%@test:7
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$
+%$ try
+%$     [o, p] = comparison_arg_checks(dates('1950Q2'), dates('1950Q1'));
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(o, dates('1950Q2'));
+%$     t(3) = dassert(p, dates('1950Q1'));
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:7

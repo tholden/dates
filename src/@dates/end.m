@@ -1,4 +1,4 @@
-function lastIndex = end(o, k, n)
+function lastIndex = end(o, k, n) % --*-- Unitary tests --*--
 
 % Overloads end keyword.
 %
@@ -27,3 +27,23 @@ function lastIndex = end(o, k, n)
 
 assert(k==1 && n==1, 'dates:end:ArgCheck', 'dates only has one dimension');
 lastIndex = o.ndat();
+
+%@test:1
+%$ % Define a dates object
+%$ o = dates('1938Q4'):dates('2015Q4');
+%$ q = dates('2015Q4');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     p = o(end);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$ 
+%$ if t(1)
+%$      t(2) = dassert(p, q);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1

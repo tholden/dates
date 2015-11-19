@@ -109,6 +109,21 @@ classdef dates<handle % --*-- Unitary tests --*--
             end
             error('dates:ArgCheck','You should first read the manual!')
         end % dates constructor.
+        % Other methods
+        p = sort(o);
+        o = sort_(o);
+        p = unique(o);
+        o = unique_(o);
+        p = append(o, d);
+        o = append_(o, d);
+        p = pop(o, d);
+        o = pop_(o, d);
+        p = remove(o, d);
+        o = remove_(o, d);
+        s = char(o);
+        a = double(o);
+        n = ndat(o);
+        n = length(o);
     end % methods 
 end % classdef
 

@@ -1,4 +1,4 @@
-function l = isequal(o, p, fake)
+function l = isequal(o, p, fake) % --*-- Unitary tests --*--
 
 % Overloads isequal function for dates objects. Returns true (1) iff o and p have the same elements.
 %

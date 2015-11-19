@@ -1,4 +1,4 @@
-function p = copy(o)
+function p = copy(o) % --*-- Unitary tests --*--
 
 % Do a copy of a dates object.
 %
@@ -26,3 +26,24 @@ function p = copy(o)
 p = dates();
 p.freq = o.freq;
 p.time = o.time;
+
+%@test:1
+%$ % Define a dates object
+%$ o = dates('1945Q3','1944Q4');
+%$ q = dates('1945Q3','1944Q4');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     p = copy(o);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$ 
+%$ if t(1)
+%$      o.sort_();
+%$      t(2) = dassert(p, q);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1

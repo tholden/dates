@@ -1,4 +1,4 @@
-function s = date2string(varargin)
+function s = date2string(varargin) % --*-- Unitary tests --*--
  
 % Returns date as a string.
 %
@@ -52,3 +52,70 @@ s = [num2str(time(1)) freq2string(freq)];
 if freq>1
     s = strcat(s, num2str(time(2)));
 end
+
+%@test:1
+%$ try
+%$     str = date2string(dates('1938Q4'));
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str, '1938Q4');
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ try
+%$     str = date2string(dates('1938Q4','1945Q3'));
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ try
+%$     str = date2string([1938, 11], 12);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str, '1938M11');
+%$ end
+%$
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ try
+%$     str = date2string([1938; 11], 12);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(str, '1938M11');
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ try
+%$     str = date2string([1938; 11], 4);
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:5

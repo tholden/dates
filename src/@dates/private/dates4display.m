@@ -1,4 +1,4 @@
-function str = dates4display(o, name, max_number_of_elements)
+function str = dates4display(o, name, max_number_of_elements) % --*-- Unitary tests --*--
 
 % Converts a list object to a string.
 %
@@ -45,4 +45,117 @@ else
     str = sprintf('%s%s, ', str, '...');
     str = sprintf('%s%s, ', str, date2string(o.time(o.length()-1,:),o.freq));
 end
-str = sprintf('%s%s>', str, date2string(o.time(o.length(),:),o.freq));
+str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
+
+%@test:1
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$ addpath('../../../data/')
+%$
+%$ try
+%$     toto = dates();
+%$     str = dates4display(toto, 'toto', 5);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     test_dates4display;
+%$     try
+%$         t(2) = dassert(str, expected_str_1);
+%$     catch
+%$         t(2) = false;
+%$     end
+%$ end
+%$
+%$ T = all(t);
+%$ rmpath('../../../data/')
+%$ cd(OPATH);
+%@eof:1
+
+%@test:2
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$ addpath('../../../data/')
+%$
+%$ try
+%$     toto = dates('1950Q1'):dates('1950Q2');
+%$     str = dates4display(toto, 'toto', 5);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     test_dates4display;
+%$     try
+%$         t(2) = dassert(str, expected_str_2);
+%$     catch
+%$         t(2) = false;
+%$     end
+%$ end
+%$
+%$ T = all(t);
+%$ rmpath('../../../data/')
+%$ cd(OPATH);
+%@eof:2
+
+%@test:3
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$ addpath('../../../data/')
+%$
+%$ try
+%$     toto = dates('1950Q1'):dates('1951Q1');
+%$     str = dates4display(toto, 'toto', 4);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     test_dates4display;
+%$     try
+%$         t(2) = dassert(str, expected_str_3);
+%$     catch
+%$         t(2) = false;
+%$     end
+%$ end
+%$
+%$ T = all(t);
+%$ rmpath('../../../data/')
+%$ cd(OPATH);
+%@eof:3
+
+%@test:4
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
+%$ cd([DATES_PATH '/private']);
+%$ addpath('../../../data/')
+%$
+%$ try
+%$     toto = dates('1950Q1'):dates('1951Q1');
+%$     str = dates4display(toto, 'toto', 6);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     test_dates4display;
+%$     try
+%$         t(2) = dassert(str, expected_str_4);
+%$     catch
+%$         t(2) = false;
+%$     end
+%$ end
+%$
+%$ T = all(t);
+%$ rmpath('../../../data/')
+%$ cd(OPATH);
+%@eof:4
+

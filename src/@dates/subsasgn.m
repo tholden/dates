@@ -1,4 +1,4 @@
-function val = subsasgn(val, idx, rhs)
+function val = subsasgn(val, idx, rhs) % --*-- Unitary tests --*--
 
 % Copyright (C) 2013-2014 Dynare Team
 %
@@ -16,3 +16,18 @@ function val = subsasgn(val, idx, rhs)
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 error('dates::subsasgn: Members of dates class are private')
+
+%@test:1
+%$ % Define a dates objects
+%$ d = dates('1950Q1'):dates('1950Q3');
+%$
+%$ % Call the tested routine.
+%$ try
+%$     d(1) = dates('1950Q4');
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:1

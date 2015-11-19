@@ -1,4 +1,4 @@
-function n = length(o)
+function n = length(o) % --*-- Unitary tests --*--
 
 % Returns the number of elements in a dates object.
 %
