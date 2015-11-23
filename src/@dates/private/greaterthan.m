@@ -31,8 +31,8 @@ end
 
 %@test:1
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ a = [2, 4];
 %$ b = [1, 2];
@@ -54,8 +54,8 @@ end
 
 %@test:2
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ a = [1, 4];
 %$ b = [2, 2];
@@ -77,8 +77,8 @@ end
 
 %@test:3
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ a = [1, 4];
 %$ b = [1, 2];
@@ -100,8 +100,8 @@ end
 
 %@test:4
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ a = [1, 2];
 %$ b = [1, 4];
@@ -123,8 +123,8 @@ end
 
 %@test:5
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ a = [1, 2];
 %$ b = [1, 2];

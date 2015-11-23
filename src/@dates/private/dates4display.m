@@ -49,8 +49,8 @@ str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
 
 %@test:1
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$ addpath('../../../data/')
 %$
 %$ try
@@ -77,8 +77,8 @@ str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
 
 %@test:2
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$ addpath('../../../data/')
 %$
 %$ try
@@ -105,8 +105,8 @@ str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
 
 %@test:3
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$ addpath('../../../data/')
 %$
 %$ try
@@ -133,8 +133,8 @@ str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
 
 %@test:4
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$ addpath('../../../data/')
 %$
 %$ try

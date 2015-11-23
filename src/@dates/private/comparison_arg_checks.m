@@ -49,8 +49,8 @@ p = varargin{2};
 
 %@test:1
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks(1);
@@ -65,8 +65,8 @@ p = varargin{2};
 
 %@test:2
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks('make', 'my', 'day');
@@ -81,8 +81,8 @@ p = varargin{2};
 
 %@test:3
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks('punk', dates('1950Q1'));
@@ -97,8 +97,8 @@ p = varargin{2};
 
 %@test:4
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks(dates('1950Q1'), 1);
@@ -113,8 +113,8 @@ p = varargin{2};
 
 %@test:5
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks(dates('1950Q1'), dates('1950M1'));
@@ -129,8 +129,8 @@ p = varargin{2};
 
 %@test:6
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks(dates('1950Q1'):dates('1950Q2'), dates('1950Q1'):dates('1950Q3'));
@@ -145,8 +145,8 @@ p = varargin{2};
 
 %@test:7
 %$ OPATH = pwd();
-%$ [DATES_PATH, junk1, junk2] = fileparts(which('dates'));
-%$ cd([DATES_PATH '/private']);
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
 %$
 %$ try
 %$     [o, p] = comparison_arg_checks(dates('1950Q2'), dates('1950Q1'));
