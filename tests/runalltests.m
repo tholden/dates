@@ -27,6 +27,10 @@ catch
     initialize_dates_toolbox;
 end
 
+if isoctave
+    more off
+end
+
 tmp = dates_src_root;
 tmp = tmp(1:end-1); % Remove trailing slash.
 run_unitary_tests_in_directory(tmp);
