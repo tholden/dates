@@ -1,4 +1,4 @@
-function S = shiftS(S,n)
+function S = shiftS(S,n) % --*-- Unitary tests --*--
 
 % Removes the first n elements of a one dimensional cell array.
 
@@ -22,3 +22,38 @@ if length(S) >= n+1
 else
     S = {};
 end
+
+%@test:1
+%$ Cell = {'1', '2', '3'};
+%$ try
+%$     Cell = shiftS(Cell,1);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(length(Cell), 2);
+%$     t(3) = dassert(Cell, {'2', '3'});
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:1
+%$ Cell = {'1', '2', '3'};
+%$ try
+%$     Cell = shiftS(Cell,3);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(length(Cell), 0);
+%$     t(3) = dassert(isequal(Cell, {}), true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+

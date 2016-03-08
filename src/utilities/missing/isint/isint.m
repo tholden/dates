@@ -1,4 +1,4 @@
-function [l,c,d] = isint(a)
+function [l,c,d] = isint(a) % --*-- Unitary tests --*--
 
 %  This function tests if the input argument is an integer.
 %
@@ -29,7 +29,7 @@ function [l,c,d] = isint(a)
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
 if ~isnumeric(a)
-    b = false;
+    l = false;
     if nargout>1
         c = [];
         d = [];
@@ -40,6 +40,90 @@ end
 l = abs(fix(a)-a)<1e-15;
 
 if nargout>1
-    c = find(b==1);
-    d = find(b==0);
+    c = find(l==true);
+    d = find(l==false);
 end
+
+%@test:1
+%$ a = 1938;
+%$ try
+%$     boolean = isint(a);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ a = pi;
+%$ try
+%$     boolean = isint(a);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, false);
+%$ end
+%$
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ a = '1';
+%$ try
+%$     boolean = isint(a);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, false);
+%$ end
+%$
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ a = [1; 2; 3];
+%$ try
+%$     [boolean, iV, iF]  = isint(a);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(all(boolean), true);
+%$     t(3) = dassert(isequal(iV, [1; 2; 3]), true);
+%$     t(4) = dassert(isempty(iF), true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ a = [1; pi; 3];
+%$ try
+%$     [boolean, iV, iF]  = isint(a);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(all(boolean), false);
+%$     t(3) = dassert(isequal(iV, [1; 3]), true);
+%$     t(4) = dassert(isequal(iF, 2), true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:5

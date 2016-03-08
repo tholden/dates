@@ -36,12 +36,12 @@ switch S(1).type
             error(['dates::subsref: ' S(1).subs ' is not a method but a member!'])
         end
         B = builtin('subsref', A, S(1));
-      case {'sort','unique','double','isempty','length','char','ndat'}% Public methods (without input arguments)
+      case {'sort','sort_','unique','unique_','double','isempty','length','char','ndat'}% Public methods (without input arguments)
         B = feval(S(1).subs,A);
         if length(S)>1 && isequal(S(2).type,'()') && isempty(S(2).subs)
            S = shiftS(S,1);
         end
-      case {'append','pop','remove'}% Public methods (with arguments).
+      case {'append','append_','pop','pop_','remove','remove_'}% Public methods (with arguments).
         if isequal(S(2).type,'()')
             B = feval(S(1).subs,A,S(2).subs{:});
             S = shiftS(S,1);
@@ -152,7 +152,9 @@ switch S(1).type
         end
     else
         % dates object A is not empty. We extract some dates
-        if isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat())
+        if ismatrix(S(1).subs{1}) && isempty(S(1).subs{1})
+            B = dates(A.freq);
+        elseif isvector(S(1).subs{1}) && all(isint(S(1).subs{1})) && all(S(1).subs{1}>0) && all(S(1).subs{1}<=A.ndat())
             B = dates();
             B.freq = A.freq;
             B.time = A.time(S(1).subs{1},:);
@@ -324,4 +326,23 @@ end
 %$ end
 %$ T = all(t);
 %@eof:6
+
+%@test:7
+%$ % Define a dates object
+%$ B = dates('1950Q1','1950Q2','1950Q3','1950Q4','1951Q1');
+%$
+%$ % Try to extract a sub-dates object.
+%$ try
+%$     d = B([]);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(isa(d,'dates'), true);
+%$     t(3) = dassert(isempty(d), true);
+%$ end
+%$ T = all(t);
+%@eof:7
 

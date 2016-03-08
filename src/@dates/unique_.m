@@ -1,6 +1,6 @@
-function o = unique(o) % --*-- Unitary tests --*--
+function o = unique_(o) % --*-- Unitary tests --*--
 
-% Overloads the unique function for dates objects.
+% Overloads the unique function for dates objects (in place modification).
 %
 % INPUTS 
 % - o [dates]
@@ -30,8 +30,13 @@ if o.ndat()<=1
     return
 end
 
-o = copy(o);
-o.unique_();
+if isoctave || matlab_ver_less_than('8.1.0')
+    [tmp, id, jd] = unique(o.time,'rows');
+else
+    [tmp, id, jd] = unique(o.time,'rows','legacy');
+end
+
+o.time = o.time(sort(id),:);
 
 %@test:1
 %$ % Define some dates
@@ -44,12 +49,11 @@ o.unique_();
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
 %$ e.freq = 4;
-%$ f.time = [1953 4; 1950 2; 1950 1; 1945 3; 1950 2];
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4,B5);
 %$ try
-%$     c = d.unique();
+%$     d.unique_();
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -57,14 +61,13 @@ o.unique_();
 %$ 
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(d.time,f.time);
-%$     t(3) = dassert(c.time,e.time);
-%$     t(4) = dassert(d.freq,e.freq);
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
 %$ end
 %$ T = all(t);
 %@eof:1
 
-%@test:2
+%@test:1
 %$ % Define some dates
 %$ B1 = '1953Q4';
 %$ B2 = '1950Q2';
@@ -75,12 +78,11 @@ o.unique_();
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
 %$ e.freq = 4;
-%$ f.time = [1953 4; 1950 2; 1950 1; 1945 3; 1950 2];
 %$
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4,B5);
 %$ try
-%$     c = unique(d);
+%$     unique_(d);
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -88,36 +90,8 @@ o.unique_();
 %$ 
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(d.time,f.time);
-%$     t(3) = dassert(c.time,e.time);
-%$     t(4) = dassert(d.freq,e.freq);
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
 %$ end
 %$ T = all(t);
-%@eof:2
-
-%@test:3
-%$ % Define some dates
-%$ B1 = '1953Q4';
-%$
-%$ % Define expected results.
-%$ e.time = [1953 4];
-%$ e.freq = 4;
-%$ f.time = e.time;
-%$
-%$ % Call the tested routine.
-%$ d = dates(B1);
-%$ try
-%$     c = d.unique();
-%$     t(1) = true;
-%$ catch
-%$     t(1) = false;
-%$ end
-%$ 
-%$ % Check the results.
-%$ if t(1)
-%$     t(2) = dassert(d.time,f.time);
-%$     t(3) = dassert(c.time,e.time);
-%$     t(4) = dassert(d.freq,e.freq);
-%$ end
-%$ T = all(t);
-%@eof:3
+%@eof:1

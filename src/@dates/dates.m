@@ -1,4 +1,4 @@
-classdef dates<handle
+classdef dates<handle % --*-- Unitary tests --*--
 
 % Copyright (C) 2014-2015 Dynare Team
 %
@@ -109,6 +109,21 @@ classdef dates<handle
             end
             error('dates:ArgCheck','You should first read the manual!')
         end % dates constructor.
+        % Other methods
+        p = sort(o);
+        o = sort_(o);
+        p = unique(o);
+        o = unique_(o);
+        p = append(o, d);
+        o = append_(o, d);
+        p = pop(o, d);
+        o = pop_(o, d);
+        p = remove(o, d);
+        o = remove_(o, d);
+        s = char(o);
+        a = double(o);
+        n = ndat(o);
+        n = length(o);
     end % methods 
 end % classdef
 
@@ -125,12 +140,12 @@ end % classdef
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
-%$ d = dates(B1,B2,B3,B4);
+%$ d = dates(B1,B2,B3,B4); 
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(1) = dassert(d.time, e.time);
+%$ t(2) = dassert(d.freq, e.freq);
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:1
 
@@ -151,7 +166,7 @@ end % classdef
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:2
 
@@ -170,9 +185,9 @@ end % classdef
 %$ d = dates(B1,B2,B3,B4);
 %$
 %$ % Check the results.
-%$ t(1) = dassert(d.time,e.time);
-%$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = dassert(d.ndat(),e.ndat());
+%$ t(1) = dassert(d.time, e.time);
+%$ t(2) = dassert(d.freq, e.freq);
+%$ t(3) = dassert(d.ndat(), size(e.time, 1));
 %$ T = all(t);
 %@eof:3
 

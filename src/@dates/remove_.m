@@ -1,4 +1,4 @@
-function o = remove(o, p) % --*-- Unitary tests --*--
+function o = remove_(o, p) % --*-- Unitary tests --*--
 
 % remove method for dates class (removes dates).
 %
@@ -42,28 +42,31 @@ if ~isequal(o.freq,p.freq)
     error('dates:remove','Inputs must have common frequency!')
 end
 
-o = copy(o);
-o.remove_(p);
+if isoctave || matlab_ver_less_than('8.1.0')
+    time = setdiff(o.time,p.time,'rows');
+else
+    time = setdiff(o.time,p.time,'rows','legacy');
+end
+
+o.time = time;
 
 %@test:1
 %$ % Define some dates objects
 %$ d = dates('1950Q1'):dates('1952Q4');
 %$ e = dates('1951Q1'):dates('1952Q4');
 %$ f = dates('1950Q1'):dates('1950Q4');
-%$ g = copy(d);
 %$
 %$ % Call the tested routine.
 %$ try
-%$     c = d.remove(e);
+%$     d.remove_(e);
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(c,f);
-%$     t(3) = dassert(d,g);
+%$     t(2) = dassert(d,f);
 %$ end
 %$
 %$ T = all(t);
@@ -77,7 +80,7 @@ o.remove_(p);
 %$
 %$ % Call the tested routine.
 %$ try
-%$     c = d.remove(e);
+%$     d.remove_(e);
 %$     t(1) = true;
 %$ catch
 %$     t(1) = false;
@@ -85,7 +88,7 @@ o.remove_(p);
 %$
 %$ % Check the results.
 %$ if t(1)
-%$     t(2) = dassert(c,f);
+%$     t(2) = dassert(d,f);
 %$ end
 %$
 %$ T = all(t);
@@ -98,7 +101,7 @@ o.remove_(p);
 %$
 %$ % Call the tested routine.
 %$ try
-%$     c = d.remove();
+%$     d.remove();
 %$     t(1) = false;
 %$ catch
 %$     t(1) = true;
@@ -114,7 +117,7 @@ o.remove_(p);
 %$
 %$ % Call the tested routine.
 %$ try
-%$     c = d.remove(e);
+%$     d.remove(e);
 %$     t(1) = false;
 %$ catch
 %$     t(1) = true;
@@ -130,7 +133,7 @@ o.remove_(p);
 %$
 %$ % Call the tested routine.
 %$ try
-%$     c = d.remove();
+%$     d.remove();
 %$     t(1) = false;
 %$ catch
 %$     t(1) = true;
@@ -138,4 +141,3 @@ o.remove_(p);
 %$
 %$ T = all(t);
 %@eof:5
-

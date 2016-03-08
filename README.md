@@ -1,0 +1,1 @@
+![](https://travis-ci.org/DynareTeam/dates.svg?branch=master)

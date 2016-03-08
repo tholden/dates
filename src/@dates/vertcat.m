@@ -1,4 +1,4 @@
-function o = vertcat(varargin)
+function o = vertcat(varargin) % --*-- Unitary tests --*--
     
 % Overloads the vertcat method for dates objects.
 %
@@ -35,3 +35,52 @@ if ~all(cellfun(@isdates,varargin))
 end
     
 o = horzcat(varargin{:});
+
+%@test:1
+%$ % Define some dates
+%$ B1 = '1953Q4';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$ B5 = '2009Q2';
+%$
+%$ % Define expected results.
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
+%$ e.freq = 4;
+%$
+%$ % Call the tested routine.
+%$ d = dates(B4,B3,B2);
+%$ try
+%$     d = [d; dates(B1); dates(B5)];
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(d.time,e.time);
+%$     t(3) = dassert(d.freq,e.freq);
+%$     t(4) = size(e.time,1)==d.ndat();
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ % Define some dates
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$
+%$ % Call the tested routine.
+%$ d = dates(B4,B3,B2);
+%$ try
+%$     d = [d; 1];
+%$     t(1) = false;
+%$ catch
+%$     t(1) = true;
+%$ end
+%$
+%$ T = all(t);
+%@eof:2

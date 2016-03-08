@@ -1,4 +1,4 @@
-function C = issubperiod(A,B)
+function C = issubperiod(A,B) % --*-- Unitary tests --*--
 
 % Copyright (C) 2013 Dynare Team
 %
@@ -22,3 +22,48 @@ if isfreq(B)
 else
     error('issubperiod:: Second input argument must be equal to 1, 4, 12 or 52 (frequency)!')
 end
+
+%@test:1
+%$ try
+%$    b = issubperiod(1, 1);
+%$    t(1) = true;
+%$ catch
+%$    t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(b, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ try
+%$    b = issubperiod(2, 4);
+%$    t(1) = true;
+%$ catch
+%$    t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(b, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ try
+%$    b = issubperiod(6, 4);
+%$    t(1) = true;
+%$ catch
+%$    t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(b, false);
+%$ end
+%$
+%$ T = all(t);
+%@eof:3

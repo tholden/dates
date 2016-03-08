@@ -1,4 +1,4 @@
-function B = isfreq(A)
+function B = isfreq(A) % --*-- Unitary tests --*--
 
 % Tests if A can be interpreted as a frequency.
 %
@@ -25,15 +25,90 @@ function B = isfreq(A)
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-B = 0;
+B = false;
 
 if ischar(A)
     if isequal(length(A),1) && ismember(upper(A),{'Y','A','Q','M','W'})
-        B = 1;
+        B = true;
         return
     end
 end
 
 if isnumeric(A) && isequal(length(A),1) && ismember(A,[1 4 12 52])
-    B = 1;
+    B = true;
 end
+
+%@test:1
+%$ try
+%$     boolean = isfreq('w');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:1
+
+%@test:2
+%$ try
+%$     boolean = isfreq('W');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:2
+
+%@test:3
+%$ try
+%$     boolean = isfreq('M');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:3
+
+%@test:4
+%$ try
+%$     boolean = isfreq('Q');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
+
+%@test:5
+%$ try
+%$     boolean = isfreq('Y');
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%@eof:5

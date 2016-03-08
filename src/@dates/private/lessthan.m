@@ -1,4 +1,4 @@
-function c = lessthan(a,b)
+function c = lessthan(a,b) % --*-- Unitary tests --*--
 
 % Copyright (C) 2013-2014 Dynare Team
 %
@@ -28,3 +28,118 @@ else
         end
     end
 end
+
+%@test:1
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
+%$
+%$ a = [2, 4];
+%$ b = [1, 2];
+%$
+%$ try
+%$     boolean = lessthan(a, b);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, false);
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:1
+
+%@test:2
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
+%$
+%$ a = [1, 4];
+%$ b = [2, 2];
+%$
+%$ try
+%$     boolean = lessthan(a, b);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:2
+
+%@test:3
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
+%$
+%$ a = [1, 4];
+%$ b = [1, 2];
+%$
+%$ try
+%$     boolean = lessthan(a, b);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, false);
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:3
+
+%@test:4
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
+%$
+%$ a = [1, 2];
+%$ b = [1, 4];
+%$
+%$ try
+%$     boolean = lessthan(a, b);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, true);
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:4
+
+%@test:5
+%$ OPATH = pwd();
+%$ [DATES_PATH, junk1, junk2] = fileparts(which('initialize_dates_toolbox'));
+%$ cd([DATES_PATH '/@dates/private']);
+%$
+%$ a = [1, 2];
+%$ b = [1, 2];
+%$
+%$ try
+%$     boolean = lessthan(a, b);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(boolean, false);
+%$ end
+%$
+%$ T = all(t);
+%$ cd(OPATH);
+%@eof:5

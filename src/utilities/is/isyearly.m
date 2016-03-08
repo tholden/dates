@@ -27,12 +27,12 @@ function b = isyearly(str)  % --*-- Unitary tests --*--
 
 if ischar(str)
     if isempty(regexp(str,'^-?[0-9]*[YyAa]$','once'))
-        b = 0;
+        b = false;
     else
-        b = 1;
+        b = true;
     end
 else
-    b = 0;
+    b = false;
 end
 
 %@test:1
@@ -46,13 +46,13 @@ end
 %$ date_7 = '-1950a';
 %$ date_8 = '1950m24';
 %$
-%$ t(1) = dassert(isyearly(date_1),0);
-%$ t(2) = dassert(isyearly(date_2),0);
-%$ t(3) = dassert(isyearly(date_3),0);
-%$ t(4) = dassert(isyearly(date_4),0);
-%$ t(5) = dassert(isyearly(date_5),0);
-%$ t(6) = dassert(isyearly(date_6),1);
-%$ t(7) = dassert(isyearly(date_7),1);
-%$ t(8) = dassert(isyearly(date_8),0);
+%$ t(1) = dassert(isyearly(date_1),false);
+%$ t(2) = dassert(isyearly(date_2),false);
+%$ t(3) = dassert(isyearly(date_3),false);
+%$ t(4) = dassert(isyearly(date_4),false);
+%$ t(5) = dassert(isyearly(date_5),false);
+%$ t(6) = dassert(isyearly(date_6),true);
+%$ t(7) = dassert(isyearly(date_7),true);
+%$ t(8) = dassert(isyearly(date_8),false);
 %$ T = all(t);
 %@eof:1

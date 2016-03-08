@@ -30,40 +30,12 @@ function o = pop(o, p) % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-if o.isempty()
-    return
-end
-    
-if nargin<2
-    % Remove last date
-    o.time = o.time(1:end-1,:);
-    return
-end
+o = copy(o);
 
-if ~( isdates(p) || isdate(p) || (isscalar(p) && isint(p)) )
-    error('dates:pop','Input argument %s has to be a dates object with a single element, a string (which can be interpreted as a date) or an integer!',inputname(2))
-end
-
-if ischar(p)
-    p = dates(p);
-end
-
-if isnumeric(p)
-    idx = find(transpose(1:o.ndat())~=p);
-    o.time = o.time(idx,:);
+if nargin>1
+    o.pop_(p);
 else
-    if ~isequal(o.freq,p.freq)
-        error('dates:pop','Inputs must have common frequency!')
-    end
-    if p.length()>1
-        error('dates:pop','dates to be removed must have one element!')
-    end
-    if isempty(p)
-        return
-    end
-    idx = find(o==p);
-    jdx = find(transpose(1:o.ndat())~=idx(end));
-    o.time = o.time(jdx,:);
+    o.pop_();
 end
 
 %@test:1
@@ -73,64 +45,119 @@ end
 %$ B3 = '1950Q1';
 %$ B4 = '1945Q3';
 %$ B5 = '2009Q2';
+%$ d = dates(B4,B3,B2,B1,B5);
 %$
 %$ % Define expected results
 %$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine
-%$ d = dates(B4,B3,B2,B1);
-%$ d.append(dates(B5));
-%$ d.pop();
-%$ t(1) = dassert(d.time,e.time(1:end-1,:));
-%$ t(2) = dassert(d.freq,e.freq);
-%$ t(3) = size(e.time,1)-1==d.ndat();
-%$ f = copy(d);
-%$ d.pop(B1);
-%$ t(4) = dassert(d.time,[1945 3; 1950 1; 1950 2]);
-%$ t(5) = dassert(d.freq,e.freq);
-%$ t(6) = size(e.time,1)-2==d.ndat();
-%$ f.pop(dates(B1));
-%$ t(7) = dassert(f.time,[1945 3; 1950 1; 1950 2]);
-%$ t(8) = dassert(f.freq,e.freq);
-%$ t(9) = size(e.time,1)-2==f.ndat();
+%$ try
+%$     c = d.pop();
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
 %$
-%$ % Check the results.
+%$ if t(1)
+%$     t(2) = dassert(c.time,e.time(1:end-1,:));
+%$     t(3) = dassert(c.freq,e.freq);
+%$     t(4) = dassert(d.time,e.time);
+%$     t(5) = dassert(d.freq,e.freq);
+%$ end
+%$
 %$ T = all(t);
 %@eof:1
 
 %@test:2
 %$ % Define some dates
-%$ B1 = '1950Q1';
+%$ B1 = '1953Q4';
 %$ B2 = '1950Q2';
 %$ B3 = '1950Q1';
 %$ B4 = '1945Q3';
 %$ B5 = '2009Q2';
+%$ d = dates(B4,B3,B2,B1,B5);
+%$
+%$ % Define expected results
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
+%$ e.freq = 4;
 %$
 %$ % Call the tested routine
-%$ d = dates(B1,B2,B3,B4);
-%$ d.append(dates(B5));
-%$ d.pop();
-%$ t(1) = dassert(d,dates(B1,B2,B3,B4));
-%$ d.pop(B1);
-%$ t(2) = dassert(d,dates(B1,B2,B4));
-%$ d.pop(1);
-%$ t(3) = dassert(d,dates(B2,B4));
+%$ try
+%$     c = d.pop(B5);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(c.time,e.time(1:end-1,:));
+%$     t(3) = dassert(c.freq,e.freq);
+%$     t(4) = dassert(d.time,e.time);
+%$     t(5) = dassert(d.freq,e.freq);
+%$ end
+%$
 %$ T = all(t);
 %@eof:2
 
 %@test:3
 %$ % Define some dates
-%$ B1 = '1950Q1';
+%$ B1 = '1953Q4';
 %$ B2 = '1950Q2';
-%$ B3 = '1950Q3';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$ B5 = '2009Q2';
+%$ d = dates(B4,B3,B2,B1,B5);
+%$
+%$ % Define expected results
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
+%$ e.freq = 4;
+%$
 %$ % Call the tested routine
-%$ d = dates(B1,B2,B3);
-%$ d.pop();
-%$ t(1) = dassert(d,dates(B1,B2));
-%$ d.pop(B1);
-%$ t(2) = dassert(d,dates(B2));
-%$ d.pop(1);
-%$ t(3) = isempty(d);
+%$ try
+%$     c = d.pop(dates(B5));
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(c.time,e.time(1:end-1,:));
+%$     t(3) = dassert(c.freq,e.freq);
+%$     t(4) = dassert(d.time,e.time);
+%$     t(5) = dassert(d.freq,e.freq);
+%$ end
+%$
 %$ T = all(t);
 %@eof:3
+
+%@test:4
+%$ % Define some dates
+%$ B1 = '1953Q4';
+%$ B2 = '1950Q2';
+%$ B3 = '1950Q1';
+%$ B4 = '1945Q3';
+%$ B5 = '2009Q2';
+%$ d = dates(B4,B3,B2,B1,B5);
+%$
+%$ % Define expected results
+%$ e.time = [1945 3; 1950 1; 1950 2; 1953 4; 2009 2];
+%$ e.freq = 4;
+%$
+%$ % Call the tested routine
+%$ try
+%$     c = d.pop(3);
+%$     t(1) = true;
+%$ catch
+%$     t(1) = false;
+%$ end
+%$
+%$ if t(1)
+%$     t(2) = dassert(c.time,e.time([1 2 4 5],:));
+%$     t(3) = dassert(c.freq,e.freq);
+%$     t(4) = dassert(d.time,e.time);
+%$     t(5) = dassert(d.freq,e.freq);
+%$ end
+%$
+%$ T = all(t);
+%@eof:4
