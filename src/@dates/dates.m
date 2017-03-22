@@ -46,7 +46,7 @@ classdef dates<handle % --*-- Unitary tests --*--
             end
             if isequal(nargin,1) && isfreq(varargin{1})
                 % Instantiate an empty dates object (only set frequency)
-                o = dates();
+                o.time = NaN(0,2);
                 if ischar(varargin{1})
                     o.freq = string2freq(varargin{1});
                 else
@@ -55,7 +55,7 @@ classdef dates<handle % --*-- Unitary tests --*--
                 return
             end
             if isequal(nargin,3) && isfreq(varargin{1})
-                o = dates();
+                o.time = NaN(0,2);
                 if ischar(varargin{1})
                     o.freq = string2freq(varargin{1});
                 else
@@ -77,7 +77,7 @@ classdef dates<handle % --*-- Unitary tests --*--
                 return
             end
             if isequal(nargin,2) && isfreq(varargin{1})
-                o = dates();
+                o.time = NaN(0,2);
                 if ischar(varargin{1})
                     o.freq = string2freq(varargin{1});
                 else
