@@ -15,10 +15,6 @@ if ~exist('isoctave','file')
     p{end+1} = '/utilities/missing/isoctave';
 end
 
-if ~isoctave && (~exist('rows','file') || ~exist('columns','file'))
-    p{end+1} = '/utilities/missing/dims';
-end
-
 if ~exist('shiftS','file') 
     p{end+1} = '/utilities/missing/shiftS';
 end
@@ -30,3 +26,7 @@ end
 % Set path
 P = cellfun(@(c)[dates_src_root(1:end-1) c], p, 'uni', false);
 addpath(P{:});
+
+if ~isoctave && (~exist('rows','file') || ~exist('columns','file'))
+    addpath([dates_src_root(1:end-1) '/utilities/missing/dims']);
+end
