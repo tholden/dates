@@ -8,7 +8,7 @@ function o = horzcat(varargin) % --*-- Unitary tests --*--
 % OUTPUTS 
 % - o [dates] object containing dates defined in varargin{:}
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -27,14 +27,8 @@ if ~all(cellfun(@isdates,varargin))
     error('dates:horzcat:ArgCheck','All input arguments must be dates objects.')
 end
 
-n = nargin;
 o = copy(varargin{1});
-
-if isequal(n,1)
-    return
-end
-
-for i=2:n
+for i=2:nargin
     p = varargin{i};
     if isequal(o.freq,p.freq)
         if ~isempty(p)
