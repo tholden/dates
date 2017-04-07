@@ -17,7 +17,7 @@ function B = horzcat(varargin) % --*-- Unitary tests --*--
 %
 %  Defines a dates object D containing the dates appearing in A, B and C.
     
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %
@@ -38,12 +38,8 @@ if ~all(cellfun(@isdates,varargin))
     error('dates::horzcat: All input arguments must be dates objects.')
 end
 
-n = nargin;
 B = varargin{1};
-
-if isequal(n,1), return, end
-
-for i=2:n
+for i=2:nargin
     C = varargin{i};
     if isequal(B.freq,C.freq)
         if ~isempty(C)
