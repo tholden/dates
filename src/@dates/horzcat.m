@@ -35,7 +35,7 @@ for i=2:nargin
             o.time = [o.time; p.time];
         end
     else
-        error('dates','All input arguments must have the same frequency!')
+        error('dates:horzcat','All input arguments must have the same frequency!')
     end
 end
 
