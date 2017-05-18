@@ -17,7 +17,7 @@ function B = vertcat(varargin)
 %
 %  Defines a dates object D containing the dates appearing in A, B and C.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

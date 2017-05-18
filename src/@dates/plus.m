@@ -4,7 +4,7 @@ function C = plus(A,B) % --*-- Unitary tests --*--
 % one of the inputs is an integer or a vector of integers, the method shifts the dates object by X (the interger input)
 % periods forward.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

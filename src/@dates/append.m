@@ -13,7 +13,7 @@ function B = append(A,a) % --*-- Unitary tests --*--
 %  If A is a dates object with quarterly frequency, then B = A.append(dates('1950Q2')) and
 %  B = A.append('1950Q2') are equivalent syntaxes.
 
-% Copyright (C) 2012-2013 Dynare Team
+% Copyright (C) 2012-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

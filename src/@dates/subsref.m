@@ -12,7 +12,7 @@ function B = subsref(A,S) % --*-- Unitary tests --*--
 % REMARKS
 %  See the matlab's documentation about the subsref method.
 
-% Copyright (C) 2011-2014 Dynare Team
+% Copyright (C) 2011-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

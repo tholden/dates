@@ -13,7 +13,7 @@ function B = pop(A,a) % --*-- Unitary tests --*--
 %  If a is a date appearing more than once in A, then only the last occurence is removed. If one wants to
 %  remove all the occurences of a in A, the setdiff function should be used instead.
 
-% Copyright (C) 2012-2013 Dynare Team
+% Copyright (C) 2012-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

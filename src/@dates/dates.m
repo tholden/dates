@@ -45,7 +45,7 @@ function dd = dates(varargin) % --*-- Unitary tests --*--
 %! @end deftypefn
 %@eod:
 
-% Copyright (C) 2011-2014 Dynare Team
+% Copyright (C) 2011-2015 Dynare Team
 %
 % This file is part of Dynare.
 %

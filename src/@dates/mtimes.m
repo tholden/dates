@@ -14,7 +14,7 @@ function B = mtimes(A,n)
 % EXAMPLE 2
 %  If A = dates('2003Q1','2009Q2'), then B=A*2 is a dates object equal to dates('2003Q1','2009Q2','2003Q1','2009Q2')
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %
