@@ -8,7 +8,7 @@ function b = isweekly(str)  % --*-- Unitary tests --*--
 % OUTPUTS
 %  o b       integer scalar, equal to 1 if str can be interpreted as a weekly date or 0 otherwise.
 
-% Copyright (C) 2012-2013 Dynare Team
+% Copyright (C) 2012-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

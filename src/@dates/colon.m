@@ -14,7 +14,7 @@ function q = colon(varargin) % --*-- Unitary tests --*--
 % 1. p must be greater than o if d>0.
 % 2. p and q are dates objects with one element.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

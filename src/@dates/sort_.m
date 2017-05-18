@@ -8,7 +8,7 @@ function o = sort_(o) % --*-- Unitary tests --*--
 % OUTPUTS
 % - o [dates] with dates sorted by increasing order.
 
-% Copyright (C) 2015 Dynare Team
+% Copyright (C) 2015-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

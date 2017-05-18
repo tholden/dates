@@ -12,7 +12,7 @@ function p = mtimes(o,n) % --*-- Unitary tests --*--
 % 1. If A = dates('2000Q1'), then B=A*3 is a dates object equal to dates('2000Q1','2000Q1','2000Q1')
 % 2. If A = dates('2003Q1','2009Q2'), then B=A*2 is a dates object equal to dates('2003Q1','2009Q2','2003Q1','2009Q2')
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

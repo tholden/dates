@@ -14,7 +14,7 @@ function q = plus(o,p) % --*-- Unitary tests --*--
 % 2. If  one of the inputs is an integer or a vector of integers, the method shifts the dates
 %    object by X (the interger input) periods forward.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

@@ -15,7 +15,7 @@ function o = vertcat(varargin) % --*-- Unitary tests --*--
 %
 %  Defines a dates object D containing the dates appearing in A, B and C.
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

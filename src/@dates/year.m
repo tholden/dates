@@ -2,7 +2,7 @@ function y = year(d)
 
 % Returns the year.
 
-% Copyright (C) 2016 Dynare Team
+% Copyright (C) 2016-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

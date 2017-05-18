@@ -8,7 +8,7 @@ function disp(o)
 % OUTPTS
 % None
 
-% Copyright (C) 2013-2014 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

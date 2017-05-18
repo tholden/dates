@@ -9,7 +9,7 @@ function [o, p] = comparison_arg_checks(varargin) % --*-- Unitary tests --*--
 % - o [dates] dates object with n or 1 elements.
 % - p [dates] dates object with n or 1 elements.
 
-% Copyright (C) 2014 Dynare Team
+% Copyright (C) 2014-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

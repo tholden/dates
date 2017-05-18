@@ -8,7 +8,7 @@ function B = isfreq(A) % --*-- Unitary tests --*--
 % OUTPUTS
 %  o B     scalar integer equal to one if A can be interpreted as a frequency, zero otherwise.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

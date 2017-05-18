@@ -10,7 +10,7 @@ function str = dates4display(o, name, max_number_of_elements) % --*-- Unitary te
 % OUTPUTS
 % - str  [string] Representation of the dates object as a string.
 
-% Copyright (C) 2014 Dynare Team
+% Copyright (C) 2014-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
