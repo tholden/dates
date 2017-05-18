@@ -2,11 +2,11 @@ function [q, io] = setdiff(o,p) % --*-- Unitary tests --*--
 
 % Overloads setdiff function for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 % - p  [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q  [dates]   with n elements
 % - io [integer] n*1 vector of integers such that q = o(io)
 %

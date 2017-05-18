@@ -1,6 +1,6 @@
-function s = year(d)
+function s = subperiod(d)
 
-% Returns the subperiod (quarter, month or week depending on the frequency).    
+% Returns the subperiod (quarter, month or week depending on the frequency).
 
 % Copyright (C) 2016 Dynare Team
 %

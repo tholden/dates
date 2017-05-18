@@ -2,10 +2,10 @@ function o = horzcat(varargin) % --*-- Unitary tests --*--
 
 % Overloads the horzcat method for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - varargin [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates] object containing dates defined in varargin{:}
 
 % Copyright (C) 2013-2017 Dynare Team

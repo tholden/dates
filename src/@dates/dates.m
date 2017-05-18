@@ -15,116 +15,116 @@ classdef dates<handle % --*-- Unitary tests --*--
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-    properties
-        freq = []; % Frequency (integer scalar)
-        time = []; % Array (one row for every date. first column is the year, second is the period)
-    end
+properties
+    freq = []; % Frequency (integer scalar)
+    time = []; % Array (one row for every date. first column is the year, second is the period)
+end
 
-    methods
+methods
         function o = dates(varargin)
-            if ~nargin
-                % Returns empty dates object.
-                o.freq = NaN(0);
-                o.time = NaN(0,2);
-                return
+        if ~nargin
+            % Returns empty dates object.
+            o.freq = NaN(0);
+            o.time = NaN(0,2);
+            return
+        end
+        if all(cellfun(@isdates, varargin))
+            % Concatenates dates objects in a dates object.
+            o = horzcat(varargin{:});
+            return
+        end
+        if all(cellfun(@isstringdate,varargin))
+            % Concatenates dates in a dates object.
+            tmp = cellfun(@string2date,varargin);
+            if all([tmp.freq]-tmp(1).freq==0)
+                o.freq = tmp(1).freq;
+            else
+                error('dates:ArgCheck', 'All dates passed as inputs must have the same frequency!')
             end
-            if all(cellfun(@isdates, varargin))
-                % Concatenates dates objects in a dates object.
-                o = horzcat(varargin{:});
-                return
+            o.time = transpose(reshape([tmp.time], 2, length(tmp)));
+            return
+        end
+        if isequal(nargin,1) && isfreq(varargin{1})
+            % Instantiate an empty dates object (only set frequency)
+            o.time = NaN(0,2);
+            if ischar(varargin{1})
+                o.freq = string2freq(varargin{1});
+            else
+                o.freq = varargin{1};
             end
-            if all(cellfun(@isstringdate,varargin))
-                % Concatenates dates in a dates object.
-                tmp = cellfun(@string2date,varargin);
-                if all([tmp.freq]-tmp(1).freq==0)
-                    o.freq = tmp(1).freq;
-                else
-                    error('dates:ArgCheck', 'All dates passed as inputs must have the same frequency!')
-                end
-                o.time = transpose(reshape([tmp.time], 2, length(tmp)));
-                return
+            return
+        end
+        if isequal(nargin,3) && isfreq(varargin{1})
+            o.time = NaN(0,2);
+            if ischar(varargin{1})
+                o.freq = string2freq(varargin{1});
+            else
+                o.freq = varargin{1};
             end
-            if isequal(nargin,1) && isfreq(varargin{1})
-                % Instantiate an empty dates object (only set frequency)
-                o.time = NaN(0,2);
-                if ischar(varargin{1})
-                    o.freq = string2freq(varargin{1});
-                else
-                    o.freq = varargin{1};
-                end
-                return
-            end
-            if isequal(nargin,3) && isfreq(varargin{1})
-                o.time = NaN(0,2);
-                if ischar(varargin{1})
-                    o.freq = string2freq(varargin{1});
-                else
-                    o.freq = varargin{1};
-                 end
-                if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
-                    if isnumeric(varargin{3}) && isvector(varargin{3}) && all(isint(varargin{3}))
-                        if all(varargin{3}>=1) && all(varargin{3}<=o.freq)
-                            o.time = [varargin{2}(:), varargin{3}(:)];
-                        else
-                            error('dates:ArgCheck','Third input must contain integers between 1 and %i.', o.freq)
-                        end
+            if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
+                if isnumeric(varargin{3}) && isvector(varargin{3}) && all(isint(varargin{3}))
+                    if all(varargin{3}>=1) && all(varargin{3}<=o.freq)
+                        o.time = [varargin{2}(:), varargin{3}(:)];
                     else
-                        error('dates:ArgCheck','Third input must be a vector of integers.')
+                        error('dates:ArgCheck','Third input must contain integers between 1 and %i.', o.freq)
                     end
+                else
+                    error('dates:ArgCheck','Third input must be a vector of integers.')
+                end
+            else
+                error('dates:ArgCheck','Second input must be a vector of integers.')
+            end
+            return
+        end
+        if isequal(nargin,2) && isfreq(varargin{1})
+            o.time = NaN(0,2);
+            if ischar(varargin{1})
+                o.freq = string2freq(varargin{1});
+            else
+                o.freq = varargin{1};
+            end
+            if isequal(o.freq, 1)
+                if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
+                    o.time = [varargin{2}, ones(length(varargin{2}),1)];
+                    return
                 else
                     error('dates:ArgCheck','Second input must be a vector of integers.')
                 end
-                return
-            end
-            if isequal(nargin,2) && isfreq(varargin{1})
-                o.time = NaN(0,2);
-                if ischar(varargin{1})
-                    o.freq = string2freq(varargin{1});
-                else
-                    o.freq = varargin{1};
-                end
-                if isequal(o.freq, 1)
-                    if (isnumeric(varargin{2}) && isvector(varargin{2}) && all(isint(varargin{2})))
-                        o.time = [varargin{2}, ones(length(varargin{2}),1)];
-                        return
-                    else
-                        error('dates:ArgCheck','Second input must be a vector of integers.')
-                    end
-                else
-                    if isequal(size(varargin{2},2), 2)
-                        if all(isint(varargin{2}(:,1))) && all(isint(varargin{2}(:,1)))
-                            if all(varargin{2}(:,2)>=1) && all(varargin{2}(:,2)<=o.freq)
-                                o.time = [varargin{2}(:,1), varargin{2}(:,2)];
-                            else
-                                error('dates:ArgCheck','Second column of the last input must contain integers between 1 and %i.',o.freq)
-                            end
+            else
+                if isequal(size(varargin{2},2), 2)
+                    if all(isint(varargin{2}(:,1))) && all(isint(varargin{2}(:,1)))
+                        if all(varargin{2}(:,2)>=1) && all(varargin{2}(:,2)<=o.freq)
+                            o.time = [varargin{2}(:,1), varargin{2}(:,2)];
                         else
-                            error('dates:ArgCheck','Second input argument must be an array of integers.')
+                            error('dates:ArgCheck','Second column of the last input must contain integers between 1 and %i.',o.freq)
                         end
                     else
-                        error('dates:ArgCheck','Wrong calling sequence!')
+                        error('dates:ArgCheck','Second input argument must be an array of integers.')
                     end
+                else
+                    error('dates:ArgCheck','Wrong calling sequence!')
                 end
-                return
             end
-            error('dates:ArgCheck','You should first read the manual!')
+            return
+        end
+        error('dates:ArgCheck','You should first read the manual!')
         end % dates constructor.
-        % Other methods
-        p = sort(o);
-        o = sort_(o);
-        p = unique(o);
-        o = unique_(o);
-        p = append(o, d);
-        o = append_(o, d);
-        p = pop(o, d);
-        o = pop_(o, d);
-        p = remove(o, d);
-        o = remove_(o, d);
-        s = char(o);
-        a = double(o);
-        n = ndat(o);
-        n = length(o);
-    end % methods 
+            % Other methods
+    p = sort(o);
+    o = sort_(o);
+    p = unique(o);
+    o = unique_(o);
+    p = append(o, d);
+    o = append_(o, d);
+    p = pop(o, d);
+    o = pop_(o, d);
+    p = remove(o, d);
+    o = remove_(o, d);
+    s = char(o);
+    a = double(o);
+    n = ndat(o);
+    n = length(o);
+end % methods
 end % classdef
 
 
@@ -140,7 +140,7 @@ end % classdef
 %$ e.freq = 4;
 %$
 %$ % Call the tested routine.
-%$ d = dates(B1,B2,B3,B4); 
+%$ d = dates(B1,B2,B3,B4);
 %$
 %$ % Check the results.
 %$ t(1) = dassert(d.time, e.time);

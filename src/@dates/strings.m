@@ -2,7 +2,7 @@ function m = strings(o) % --*-- Unitary tests --*--
 
 % Returns a cell array of strings containing the dates
 %
-% INPUTS 
+% INPUTS
 % - o [dates] object with n elements.
 %
 % OUTPUTS
@@ -52,4 +52,3 @@ end
 %$
 %$ T = all(t);
 %@eof:1
-

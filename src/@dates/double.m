@@ -3,14 +3,14 @@ function [m, f]  = double(o) % --*-- Unitary tests --*--
 % Returns a vector of doubles with the fractional part corresponding
 % to the subperiod. Used for plots and to store dates in a matrix.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPUTS  
+% OUTPUTS
 % - m [double] o.ndat*1 vector of doubles.
 % - f [integer] scalar, the frequency (1, 4, 12 or 52).
 %
-% REMARKS 
+% REMARKS
 %  Obviously the frequency is lost during the conversion.
 
 % Copyright (C) 2013-2014 Dynare Team

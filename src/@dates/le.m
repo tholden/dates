@@ -2,11 +2,11 @@ function l = le(varargin)  % --*-- Unitary tests --*--
 
 % Overloads the <= operator for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - o [dates] dates object with n or 1 elements.
 % - p [dates] dates object with n or 1 elements.
 %
-% OUTPUTS 
+% OUTPUTS
 % - l [logical] column vector of max(n,1) elements (zeros or ones).
 
 % Copyright (C) 2013-2015 Dynare Team

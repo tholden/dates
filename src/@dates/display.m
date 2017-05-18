@@ -2,10 +2,10 @@ function display(o)
 
 % Overloads display method for dates object.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPTS 
+% OUTPTS
 % None
 
 % Copyright (C) 2013-2014 Dynare Team

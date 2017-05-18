@@ -2,14 +2,14 @@ function q = plus(o,p) % --*-- Unitary tests --*--
 
 % Overloads the plus (+) binary operator.
 %
-% INPUTS 
+% INPUTS
 % - o [dates or integer]
 % - p [dates or integer]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. If o and p are dates objects the method combines o and p without removing repetitions.
 % 2. If  one of the inputs is an integer or a vector of integers, the method shifts the dates
 %    object by X (the interger input) periods forward.
@@ -80,7 +80,7 @@ end
 %$   t(1) = 0;
 %$ end
 %$
-%$ if t(1) 
+%$ if t(1)
 %$   t(2) = dassert(e1,d3);
 %$   t(3) = dassert(e2,dates('1950Q1','1950Q2','1950Q3','1950Q4','1950Q1','1950Q2','1950Q3','1950Q4'));
 %$ end

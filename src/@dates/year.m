@@ -1,6 +1,6 @@
 function y = year(d)
 
-% Returns the year.    
+% Returns the year.
 
 % Copyright (C) 2016 Dynare Team
 %

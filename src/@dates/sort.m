@@ -2,10 +2,10 @@ function o = sort(o) % --*-- Unitary tests --*--
 
 % Sort method for dates class (with copy).
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates] with dates sorted by increasing order.
 
 % Copyright (C) 2011-2015 Dynare Team
@@ -46,7 +46,7 @@ o.sort_();
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
 %$     t(2) = dassert(d.time,f.time);
@@ -77,7 +77,7 @@ o.sort_();
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
 %$     t(2) = dassert(d.time,f.time);

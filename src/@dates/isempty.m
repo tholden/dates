@@ -2,10 +2,10 @@ function l = isempty(o) % --*-- Unitary tests --*--
 
 % Returns true (1) if and only if o dates object is empty.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - l [logical]
 
 % Copyright (C) 2013-2015 Dynare Team

@@ -1,16 +1,16 @@
 function o = vertcat(varargin) % --*-- Unitary tests --*--
-    
+
 % Overloads the vertcat method for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - varargin [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates] object containing dates defined in varargin{:}
 %
-% EXAMPLE 1 
+% EXAMPLE 1
 %  If A, B and C are dates object the following syntax:
-%    
+%
 %    D = [A; B; C] ;
 %
 %  Defines a dates object D containing the dates appearing in A, B and C.
@@ -29,11 +29,11 @@ function o = vertcat(varargin) % --*-- Unitary tests --*--
 %
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
-    
+
 if ~all(cellfun(@isdates,varargin))
     error('dates:vertcat:ArgCheck','All input arguments must be dates objects.')
 end
-    
+
 o = horzcat(varargin{:});
 
 %@test:1

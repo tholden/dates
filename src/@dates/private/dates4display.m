@@ -2,13 +2,13 @@ function str = dates4display(o, name, max_number_of_elements) % --*-- Unitary te
 
 % Converts a list object to a string.
 %
-% INPUTS 
+% INPUTS
 % - o                      [list]     A dates object to be displayed.
 % - name                   [string]   Name of the dates object o.
 % - max_number_of_elements [integer]  Maximum number of elements displayed.
 %
-% OUTPUTS 
-% - str  [string] Representation of the dates object as a string. 
+% OUTPUTS
+% - str  [string] Representation of the dates object as a string.
 
 % Copyright (C) 2014 Dynare Team
 %
@@ -158,4 +158,3 @@ str = sprintf('%s%s>\n', str, date2string(o.time(o.length(),:),o.freq));
 %$ rmpath('../../../data/')
 %$ cd(OPATH);
 %@eof:4
-

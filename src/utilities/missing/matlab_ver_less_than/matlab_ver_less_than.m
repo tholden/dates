@@ -2,13 +2,13 @@ function r = matlab_ver_less_than(verstr)
 
 % Returns 1 if current Matlab version is strictly older than the one given in argument.
 %
-% INPUTS 
+% INPUTS
 % - verstr  [string]  Matlab's version as 'x.y' or 'x.y.z'
-%    
-% OUTPUTS 
+%
+% OUTPUTS
 % - r       [logical] true or false (0 or 1)
 %
-% REMARKS 
+% REMARKS
 % 1. This function will fail under Octave.
 
 % Copyright (C) 2008-2014 Dynare Team

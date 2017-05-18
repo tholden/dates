@@ -1,18 +1,18 @@
 function q = minus(o,p) % --*-- Unitary tests --*--
 
-% Overloads the minus operator (-). If o and p are dates objects, the method . If 
+% Overloads the minus operator (-). If o and p are dates objects, the method . If
 % one of the inputs is an integer or a vector of integers, the method shifts the dates object by X (the interger input) periods backward.
 
 % Overloads the minus (-) binary operator.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - p [dates or integer]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. If o and p are dates objects the method returns the number of periods between o and p (so that q+o=p).
 % 2. If o is a dates object and p is an integer (scalar or vector), the method shifts the dates object by
 %    p periods backward.

@@ -39,7 +39,7 @@ p.time = o.time;
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ if t(1)
 %$      o.sort_();
 %$      t(2) = dassert(p, q);

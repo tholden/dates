@@ -143,7 +143,3 @@ end
 %$ T = all(t);
 %$ cd(OPATH);
 %@eof:5
-
-
-
-

@@ -11,15 +11,15 @@ if ~exist('isint','file')
     p{end+1} = '/utilities/missing/isint';
 end
 
-if ~exist('isoctave','file') 
+if ~exist('isoctave','file')
     p{end+1} = '/utilities/missing/isoctave';
 end
 
-if ~exist('shiftS','file') 
+if ~exist('shiftS','file')
     p{end+1} = '/utilities/missing/shiftS';
 end
 
-if ~exist('matlab_ver_less_than','file') 
+if ~exist('matlab_ver_less_than','file')
     p{end+1} = '/utilities/missing/matlab_ver_less_than';
 end
 

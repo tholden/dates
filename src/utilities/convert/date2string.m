@@ -1,15 +1,15 @@
 function s = date2string(varargin) % --*-- Unitary tests --*--
- 
+
 % Returns date as a string.
 %
-% INPUTS 
+% INPUTS
 %  o varargin{1}     + dates object with one element, if nargin==1.
 %                    + 1*2 vector of integers (first element is the year, second element is the subperiod), if nargin==2.
 %  o varargin{2}     integer scalar equal to 1, 4, 12 or 52 (frequency).
 %
-% OUTPUTS 
+% OUTPUTS
 %  o s               string.
-    
+
 % Copyright (C) 2013 Dynare Team
 %
 % This file is part of Dynare.
@@ -26,8 +26,8 @@ function s = date2string(varargin) % --*-- Unitary tests --*--
 %
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
-    
-if isequal(nargin,1) 
+
+if isequal(nargin,1)
     if ~(isa(varargin{1},'dates') && isequal(length(varargin{1}),1))
         error(['dates::format: Input argument ' inputname(1) ' has to be a dates object with one element!'])
     else

@@ -1,11 +1,11 @@
 function q = max(varargin)  % --*-- Unitary tests --*--
-    
+
 % Overloads the max function for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - varargin [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q [dates]
 
 % Copyright (C) 2013-2015 Dynare Team

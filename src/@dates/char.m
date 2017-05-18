@@ -2,7 +2,7 @@ function s = char(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 %
 % OUTPUTS
@@ -118,4 +118,3 @@ s = date2string(o.time, o.freq);
 %$ end
 %$ T = all(t);
 %@eof:5
-

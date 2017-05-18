@@ -40,7 +40,7 @@ lastIndex = o.ndat();
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ if t(1)
 %$      t(2) = dassert(p, q);
 %$ end

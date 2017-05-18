@@ -2,13 +2,13 @@ function o = union(varargin) % --*-- Unitary tests --*--
 
 % Overloads union function for dates objects (removes repetitions if any).
 %
-% INPUTS 
+% INPUTS
 % - varargin [dates]
 %
-% OUPUTS 
+% OUPUTS
 % - o [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. Elements in o are sorted by increasing order.
 
 % Copyright (C) 2013-2014 Dynare Team

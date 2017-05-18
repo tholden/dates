@@ -2,10 +2,10 @@ function disp(o)
 
 % Overloads the disp function for dates object.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPTS 
+% OUTPTS
 % None
 
 % Copyright (C) 2013-2014 Dynare Team

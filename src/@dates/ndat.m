@@ -2,7 +2,7 @@ function s = ndat(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 %
 % OUTPUTS
@@ -96,5 +96,3 @@ s = size(o.time, 1);
 %$ end
 %$ T = all(t);
 %@eof:4
-
-

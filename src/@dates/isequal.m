@@ -2,11 +2,11 @@ function l = isequal(o, p, fake) % --*-- Unitary tests --*--
 
 % Overloads isequal function for dates objects. Returns true (1) iff o and p have the same elements.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - p [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - l [logical]
 
 % Copyright (C) 2013-2015 Dynare Team
@@ -69,4 +69,3 @@ l = isequal(o.freq, p.freq) && isequal(o.time, p.time);
 %$ t(1) = ~isequal(d1,d2);
 %$ T = all(t);
 %@eof:5
-

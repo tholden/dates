@@ -2,11 +2,11 @@ function o = append(o, d) % --*-- Unitary tests --*--
 
 % append method for dates class.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - a [dates or string] dates object with one element or string that can be interpreted as a date.
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates] dates object containing dates defined in o and d.
 
 % Copyright (C) 2012-2015 Dynare Team

@@ -2,15 +2,15 @@ function q = colon(varargin) % --*-- Unitary tests --*--
 
 % Overloads the colon operator (:). This method can be used to create ranges of dates.
 %
-% INPUTS 
+% INPUTS
 %  o o [dates] Initial date.
 %  o d [integer] Number of periods between each date (default value, if nargin==2, is one)
 %  o p [dates] Terminal date.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o q [dates] Object with length(p-o) elements (if d==1).
 %
-% REMARKS 
+% REMARKS
 % 1. p must be greater than o if d>0.
 % 2. p and q are dates objects with one element.
 
@@ -70,7 +70,7 @@ q = dates();
 n = (p-o)+1; % The number of elements in q dates object if d==1.
 m = n;
 if d>1 % Correction of the number of elements (if d is not equal to one).
-    m = length(1:d:n); 
+    m = length(1:d:n);
 end
 
 % Set the frequency in q

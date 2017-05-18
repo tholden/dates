@@ -2,10 +2,10 @@ function o = uplus(o)  % --*-- Unitary tests --*--
 
 % Overloads the unary plus operator for dates objects. Shifts all the elements by one period.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates]
 
 % Copyright (C) 2013-2014 Dynare Team
