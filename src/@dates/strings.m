@@ -2,7 +2,7 @@ function m = strings(dd)
 
 % Returns a cell array of strings containing the dates
 %
-% INPUTS 
+% INPUTS
 %   o dd   dates object
 %
 % OUTPUTS

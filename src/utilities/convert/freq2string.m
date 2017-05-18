@@ -1,11 +1,11 @@
 function s = freq2string(freq)
 
-% INPUTS 
+% INPUTS
 %  o freq     scalar integer,  equal to 1, 4, 12 or 52 (resp. annual, quaterly, monthly or weekly)
 %
-% OUTPUTS 
+% OUTPUTS
 %  o s        character, equal to Y, Q, M or W (resp. annual, quaterly, monthly or weekly)
-    
+
 % Copyright (C) 2013 Dynare Team
 %
 % This file is part of Dynare.

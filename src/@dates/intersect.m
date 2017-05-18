@@ -69,7 +69,7 @@ end
 
 C.freq = A.freq;
 C.time = time;
-C.ndat = rows(time); 
+C.ndat = rows(time);
 
 %@test:1
 %$ % Define some dates objects

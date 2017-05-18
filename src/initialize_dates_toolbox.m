@@ -14,7 +14,7 @@ if ~exist('isint','file')
     addpath([dates_src_root '/utilities/missing/isint'])
 end
 
-if ~exist('isoctave','file') 
+if ~exist('isoctave','file')
     addpath([dates_src_root '/utilities/missing/isoctave'])
 end
 
@@ -22,10 +22,10 @@ if ~isoctave && (~exist('rows','file') || ~exist('columns','file'))
     addpath([dates_src_root '/utilities/missing/dims'])
 end
 
-if ~exist('shiftS','file') 
+if ~exist('shiftS','file')
     addpath([dates_src_root '/utilities/missing/shiftS'])
 end
 
-if ~exist('matlab_ver_less_than','file') 
+if ~exist('matlab_ver_less_than','file')
     addpath([dates_src_root '/utilities/missing/matlab_ver_less_than'])
 end

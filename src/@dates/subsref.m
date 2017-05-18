@@ -2,14 +2,14 @@ function B = subsref(A,S) % --*-- Unitary tests --*--
 
 % Overload the subsref method for dates objects.
 %
-% INPUTS 
+% INPUTS
 %  o A     dates object.
 %  o S     matlab's structure.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B     dates object.
 %
-% REMARKS 
+% REMARKS
 %  See the matlab's documentation about the subsref method.
 
 % Copyright (C) 2011-2014 Dynare Team
@@ -40,7 +40,7 @@ switch S(1).type
       case {'sort','unique','double','isempty','length','char'}% Public methods (without input arguments)
         B = feval(S(1).subs,A);
         if length(S)>1 && isequal(S(2).type,'()') && isempty(S(2).subs)
-           S = shiftS(S,1);
+            S = shiftS(S,1);
         end
       case {'append','pop'}% Public methods (with arguments).
         if isequal(S(2).type,'()')
@@ -201,7 +201,7 @@ end
 %$ B = dates('1950Q1'):dates('1960Q3');
 %$
 %$ % Try to extract a sub-dates object and apply a method
-%$ 
+%$
 %$ d = B(2:3).sort ;
 %$
 %$ if isa(d,'dates')
@@ -330,4 +330,3 @@ end
 %$ end
 %$ T = all(t);
 %@eof:6
-

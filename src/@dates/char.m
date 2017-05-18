@@ -2,7 +2,7 @@ function s = char(dd)
 
 % Given a one element dates object, returns a string with the formatted date.
 %
-% INPUTS 
+% INPUTS
 %   o dd   dates object with one element
 %
 % OUTPUTS

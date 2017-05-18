@@ -21,12 +21,12 @@ if isempty(dd)
     fprintf('Empty dates object.\n');
     return
 end
-    
+
 max_displayed = 5;
 first_displayed = 2;
-    
+
 fprintf('<dates: ');
-    
+
 if dd.ndat<=max_displayed
     for i=1:dd.ndat
         fprintf(date2string(dd.time(i,:),dd.freq))

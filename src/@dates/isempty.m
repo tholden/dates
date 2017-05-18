@@ -38,7 +38,7 @@ function B = isempty(A) % --*-- Unitary tests --*--
 %
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
-    
+
 B = isequal(A.ndat,0);
 
 %@test:1

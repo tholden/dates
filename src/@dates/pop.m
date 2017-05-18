@@ -2,14 +2,14 @@ function B = pop(A,a) % --*-- Unitary tests --*--
 
 % pop method for dates class (removes a date).
 %
-% INPUTS 
+% INPUTS
 %  o A     dates object.
 %  o a     dates object with one element, string which can be interpreted as a date or integer scalar.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B     dates object (with B.ndat==A.ndat-1).
 %
-% REMARKS 
+% REMARKS
 %  If a is a date appearing more than once in A, then only the last occurence is removed. If one wants to
 %  remove all the occurences of a in A, the setdiff function should be used instead.
 

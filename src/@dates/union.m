@@ -2,13 +2,13 @@ function D = union(varargin) % --*-- Unitary tests --*--
 
 % Overloads union function for dates objects (removes repetitions if any).
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object.
 %  o B    dates object.
 %  o C    dates object.
 %  o ...
 %
-% OUPUTS 
+% OUPUTS
 %  o D    dates object (elements are sorted by increasing order).
 
 % Copyright (C) 2013 Dynare Team

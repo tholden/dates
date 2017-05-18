@@ -80,7 +80,7 @@ if isempty(time)
 end
 
 C.time = time;
-C.ndat = rows(time); 
+C.ndat = rows(time);
 
 %@test:1
 %$ % Define some dates objects

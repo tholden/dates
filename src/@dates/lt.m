@@ -2,11 +2,11 @@ function C = lt(A,B)  % --*-- Unitary tests --*--
 
 % Overloads the < operator for dates objects.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object with n or 1 elements.
 %  o B    dates object with n or 1 elements.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o C    column vector of max(n,1) elements (zeros or ones).
 
 % Copyright (C) 2013 Dynare Team
@@ -61,19 +61,19 @@ else
 end
 
 function c = lessthan(a,b)
-    if a(1)<b(1)
-        c = true;
+if a(1)<b(1)
+    c = true;
+else
+    if a(1)>b(1)
+        c = false;
     else
-        if a(1)>b(1)
-            c = false;
+        if a(2)<b(2)
+            c = true;
         else
-            if a(2)<b(2)
-                c = true;
-            else
-                c = false;
-            end
+            c = false;
         end
     end
+end
 
 %@test:1
 %$ % Define some dates

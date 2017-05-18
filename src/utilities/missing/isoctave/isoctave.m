@@ -1,7 +1,7 @@
 function l = isoctave()
 
 % Tests if Octave is used.
-    
+
 % Copyright (C) 2013-2014 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify

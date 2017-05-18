@@ -3,16 +3,16 @@ function [B, C]  = double(A) % --*-- Unitary tests --*--
 % Returns a vector of doubles with the fractional part corresponding
 % to the subperiod. Used for plots and to store dates in a matrix.
 %
-% INPUTS 
+% INPUTS
 %  o A     dates object.
 %
-% OUTPUTS  
+% OUTPUTS
 %  o B     A.ndat*1 vector of doubles.
 %  o C     integer scalar, the frequency (1, 4, 12 or 52).
 %
-% REMARKS 
+% REMARKS
 %  Obviously the frequency is lost during the conversion.
-    
+
 % Copyright (C) 2013 Dynare Team
 %
 % This file is part of Dynare.

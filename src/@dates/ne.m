@@ -2,11 +2,11 @@ function C = ne(A,B) % --*-- Unitary tests --*--
 
 % Overloads ~= operator for dates objects.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object with n or 1 elements.
 %  o B    dates object with n or 1 elements.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o C    column vector of max(n,1) elements (zeros or ones).
 
 % Copyright (C) 2013 Dynare Team

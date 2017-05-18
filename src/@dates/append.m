@@ -2,15 +2,15 @@ function B = append(A,a) % --*-- Unitary tests --*--
 
 % append method for dates class.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object.
 %  o a    dates object with one element or string that can be interpreted as a date.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B    dates object containing dates defined in A and a.
 %
-% EXAMPLE 1 
-%  If A is a dates object with quarterly frequency, then B = A.append(dates('1950Q2')) and 
+% EXAMPLE 1
+%  If A is a dates object with quarterly frequency, then B = A.append(dates('1950Q2')) and
 %  B = A.append('1950Q2') are equivalent syntaxes.
 
 % Copyright (C) 2012-2013 Dynare Team
@@ -51,7 +51,7 @@ B.ndat = A.ndat+1;
 B.freq = A.freq;
 B.time = NaN(B.ndat,2);
 B.time(1:A.ndat,:) = A.time;
-B.time(A.ndat+1,:) = a.time; 
+B.time(A.ndat+1,:) = a.time;
 
 %@test:1
 %$ % Define some dates

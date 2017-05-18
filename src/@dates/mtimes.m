@@ -2,14 +2,14 @@ function B = mtimes(A,n)
 
 % Overloads the times operator (*). Returns dates object A replicated n times.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object with m elements.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B    dates object with m*n elements.
 %
 % EXAMPLE 1
-%  If A = dates('2000Q1'), then B=A*3 is a dates object equal to dates('2000Q1','2000Q1','2000Q1')  
+%  If A = dates('2000Q1'), then B=A*3 is a dates object equal to dates('2000Q1','2000Q1','2000Q1')
 %
 % EXAMPLE 2
 %  If A = dates('2003Q1','2009Q2'), then B=A*2 is a dates object equal to dates('2003Q1','2009Q2','2003Q1','2009Q2')

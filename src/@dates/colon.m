@@ -2,15 +2,15 @@ function C = colon(varargin) % --*-- Unitary tests --*--
 
 % Overloads the colon operator (:). This method can be used to create ranges of dates.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object with one element.
 %  o d    integer scalar, number of periods between each date (default value, if nargin==2, is one)
 %  o B    dates object with one element.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o C    dates object with length(B-A) elements (if d==1).
 %
-% REMARKS 
+% REMARKS
 %  B must be greater than A if d>0.
 
 % Copyright (C) 2013 Dynare Team

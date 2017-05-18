@@ -1,7 +1,7 @@
 function C = max(varargin)
-    
+
 % Overloads the max function for dates objects.
-    
+
 % Copyright (C) 2013 Dynare Team
 %
 % This file is part of Dynare.

@@ -2,10 +2,10 @@ function dd = sort(dd) % --*-- Unitary tests --*--
 
 % Sort method for dates class.
 %
-% INPUTS 
+% INPUTS
 %  o dd    dates object.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o dd    dates object (with dates sorted by increasing order).
 
 % Copyright (C) 2011-2013 Dynare Team
@@ -46,7 +46,7 @@ dd.time = sortrows(dd.time,[1,2]);
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4);
 %$ d = d.sort;
-%$ 
+%$
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);

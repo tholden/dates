@@ -1,6 +1,6 @@
 function C = minus(A,B) % --*-- Unitary tests --*--
 
-% Overloads the minus operator (-). If A and B are dates objects, the method returns the number of periods between A and B (so that A+C=B). If 
+% Overloads the minus operator (-). If A and B are dates objects, the method returns the number of periods between A and B (so that A+C=B). If
 % one of the inputs is an integer or a vector of integers, the method shifts the dates object by X (the interger input) periods backward.
 
 % Copyright (C) 2013 Dynare Team

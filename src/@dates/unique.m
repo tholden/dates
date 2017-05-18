@@ -2,10 +2,10 @@ function B = unique(A) % --*-- Unitary tests --*--
 
 % Overloads the unique function for dates objects.
 %
-% INPUTS 
+% INPUTS
 %  o A    dates object.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B    dates object (a copy of A without repetitions, only the last occurence of a date is kept).
 
 % Copyright (C) 2012-2013 Dynare Team
@@ -46,7 +46,7 @@ B.ndat = size(B.time,1);
 %$ B2 = '1950Q2';
 %$ B3 = '1950q1';
 %$ B4 = '1945Q3';
-%$ B5 = '1950Q2'; 
+%$ B5 = '1950Q2';
 %$
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
@@ -56,7 +56,7 @@ B.ndat = size(B.time,1);
 %$ % Call the tested routine.
 %$ d = dates(B1,B2,B3,B4,B5);
 %$ d = d.unique();
-%$ 
+%$
 %$ % Check the results.
 %$ t(1) = dassert(d.time,e.time);
 %$ t(2) = dassert(d.freq,e.freq);

@@ -2,15 +2,15 @@ function [l,c,d] = isint(a)
 
 %  This function tests if the input argument is an integer.
 %
-%  INPUT 
+%  INPUT
 %  - a    [double]   m*n matrix.
 %
-%  OUTPUT 
-%  - l    [logical]  m*n matrix of true and false (1 and 0). l(i,j)=true if a(i,j) is an integer.    
+%  OUTPUT
+%  - l    [logical]  m*n matrix of true and false (1 and 0). l(i,j)=true if a(i,j) is an integer.
 %  - c    [integer]  p*1 vector of indices pointing to the integer elements of a.
 %  - d    [integer]  q*1 vector of indices pointing to the non integer elements of a.
-%    
-%  REMARKS 
+%
+%  REMARKS
 %  p+q is equal to the product of m by n.
 
 % Copyright (C) 2009-2014 Dynare Team

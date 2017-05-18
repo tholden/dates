@@ -2,21 +2,21 @@ function B = horzcat(varargin) % --*-- Unitary tests --*--
 
 % Overloads the horzcat method for dates objects.
 %
-% INPUTS 
+% INPUTS
 %  o A1    dates object.
 %  o A2    dates object.
 %  o ...
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B    dates object containing dates defined in A1, A2, ...
 %
-% EXAMPLE 1 
+% EXAMPLE 1
 %  If A, B and C are dates objects the following syntax:
-%    
+%
 %    D = [A, B, C] ;
 %
 %  Defines a dates object D containing the dates appearing in A, B and C.
-    
+
 % Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.

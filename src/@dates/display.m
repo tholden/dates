@@ -24,7 +24,7 @@ end
 
 max_displayed = 5;
 first_displayed = 2;
-    
+
 fprintf('%s = <dates: ', inputname(1));
 
 if dd.ndat<=max_displayed

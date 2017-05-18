@@ -2,10 +2,10 @@ function B = isfreq(A)
 
 % Tests if A can be interpreted as a frequency.
 %
-% INPUTS 
+% INPUTS
 %  o A     scalar integer or character.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o B     scalar integer equal to one if A can be interpreted as a frequency, zero otherwise.
 
 % Copyright (C) 2013 Dynare Team

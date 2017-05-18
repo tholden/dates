@@ -2,10 +2,10 @@ function b = ismonthly(str)  % --*-- Unitary tests --*--
 
 % Tests if the input can be interpreted as a monthly date.
 %
-% INPUTS 
+% INPUTS
 %  o str     string.
 %
-% OUTPUTS 
+% OUTPUTS
 %  o b       integer scalar, equal to 1 if str can be interpreted as a monthly date or 0 otherwise.
 
 % Copyright (C) 2012-2013 Dynare Team
