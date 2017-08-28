@@ -2,17 +2,17 @@ function [q, io] = setdiff(o,p) % --*-- Unitary tests --*--
 
 % Overloads setdiff function for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 % - p  [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q  [dates]   with n elements
 % - io [integer] n*1 vector of integers such that q = o(io)
 %
 % See also pop, remove.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

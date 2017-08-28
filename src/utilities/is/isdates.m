@@ -2,7 +2,7 @@ function B = isdates(A) % --*-- Unitary tests --*--
 
 % Tests if the input A is a dates object.
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-2015 Dynare Team
 %
 % This file is part of Dynare.
 %

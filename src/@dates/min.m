@@ -2,13 +2,13 @@ function q = min(varargin) % --*-- Unitary tests --*--
 
 % Overloads the min function for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - varargin [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q [dates]
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

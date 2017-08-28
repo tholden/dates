@@ -2,13 +2,13 @@ function m = strings(o) % --*-- Unitary tests --*--
 
 % Returns a cell array of strings containing the dates
 %
-% INPUTS 
+% INPUTS
 % - o [dates] object with n elements.
 %
 % OUTPUTS
 % - m [cell of char] object with n elements.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -52,4 +52,3 @@ end
 %$
 %$ T = all(t);
 %@eof:1
-

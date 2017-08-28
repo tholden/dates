@@ -2,20 +2,20 @@ function o = pop(o, p) % --*-- Unitary tests --*--
 
 % pop method for dates class (removes a date).
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - p [dates] object with one element, string which can be interpreted as a date or integer scalar.
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. If a is a date appearing more than once in o, then only the last occurence is removed. If one wants to
 %    remove all the occurences of p in o, the remove method should be used instead.
 %
 % See also remove, setdiff.
-    
-% Copyright (C) 2013-2015 Dynare Team
+
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

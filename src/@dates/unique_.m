@@ -2,16 +2,16 @@ function o = unique_(o) % --*-- Unitary tests --*--
 
 % Overloads the unique function for dates objects (in place modification).
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUPUTS 
+% OUPUTS
 % - o [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. Only the last occurence of a date is kept.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ o.time = o.time(sort(id),:);
 %$ B2 = '1950Q2';
 %$ B3 = '1950q1';
 %$ B4 = '1945Q3';
-%$ B5 = '1950Q2'; 
+%$ B5 = '1950Q2';
 %$
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
@@ -58,7 +58,7 @@ o.time = o.time(sort(id),:);
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
 %$     t(2) = dassert(d.time,e.time);
@@ -73,7 +73,7 @@ o.time = o.time(sort(id),:);
 %$ B2 = '1950Q2';
 %$ B3 = '1950q1';
 %$ B4 = '1945Q3';
-%$ B5 = '1950Q2'; 
+%$ B5 = '1950Q2';
 %$
 %$ % Define expected results.
 %$ e.time = [1953 4; 1950 1; 1945 3; 1950 2];
@@ -87,7 +87,7 @@ o.time = o.time(sort(id),:);
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
 %$     t(2) = dassert(d.time,e.time);

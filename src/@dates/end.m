@@ -10,7 +10,7 @@ function lastIndex = end(o, k, n) % --*-- Unitary tests --*--
 % OUTPUTS
 %   lastIndex [integer] last dates index
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ lastIndex = o.ndat();
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ if t(1)
 %$      t(2) = dassert(p, q);
 %$ end

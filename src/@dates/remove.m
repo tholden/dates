@@ -2,20 +2,20 @@ function o = remove(o, p) % --*-- Unitary tests --*--
 
 % remove method for dates class (removes dates).
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - p [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - o [dates]
 %
-% REMARKS 
+% REMARKS
 % 1. If a is a date appearing more than once in o, then all occurences are removed.
 % 2. The removal of p is done by inplace modification of o (in place version of setdiff).
 %
 % See also pop, setdiff
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ o.remove_(p);
 %$ catch
 %$     t(1) = false;
 %$ end
-%$ 
+%$
 %$ % Check the results.
 %$ if t(1)
 %$     t(2) = dassert(c,f);
@@ -138,4 +138,3 @@ o.remove_(p);
 %$
 %$ T = all(t);
 %@eof:5
-

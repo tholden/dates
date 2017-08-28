@@ -1,6 +1,6 @@
 function date = string2date(a) % --*-- Unitary tests --*--
-    
-% Copyright (C) 2013 Dynare Team
+
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %
@@ -53,12 +53,12 @@ end
 
 
 function b = write_time_field(c, d)
-    b(1) = str2double(c(d));
-    b(2) = str2double(c(d(end)+2:end));
+b(1) = str2double(c(d));
+b(2) = str2double(c(d(end)+2:end));
 
 function b = write_time_field_y(c, d)
-    b(1) = str2double(c(d));
-    b(2) = 1;
+b(1) = str2double(c(d));
+b(2) = 1;
 
 %@test:1
 %$

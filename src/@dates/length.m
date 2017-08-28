@@ -2,13 +2,13 @@ function n = length(o) % --*-- Unitary tests --*--
 
 % Returns the number of elements in a dates object.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - n [integer] Number of elements in o.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

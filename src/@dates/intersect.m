@@ -2,14 +2,14 @@ function q = intersect(o, p) % --*-- Unitary tests --*--
 
 % Overloads intersect function for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - o [dates]
 % - p [dates]
 %
-% OUTPUTS 
+% OUTPUTS
 % - q [dates] All the common elements in o and p.
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by

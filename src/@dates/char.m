@@ -2,13 +2,13 @@ function s = char(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 %
 % OUTPUTS
 % - s  [string]
 
-% Copyright (C) 2014 Dynare Team
+% Copyright (C) 2014-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -118,4 +118,3 @@ s = date2string(o.time, o.freq);
 %$ end
 %$ T = all(t);
 %@eof:5
-

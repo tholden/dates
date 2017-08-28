@@ -1,8 +1,8 @@
 function time = add_periods_to_array_of_dates(time, freq, p)  % --*-- Unitary tests --*--
 
 % Adds a p periods (p can be negative) to a date (or a set of dates) characterized by array time and frequency freq.
-    
-% Copyright (C) 2013 Dynare Team
+
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This file is part of Dynare.
 %

@@ -2,14 +2,14 @@ function l = ge(varargin)  % --*-- Unitary tests --*--
 
 % Overloads the >= operator for dates objects.
 %
-% INPUTS 
+% INPUTS
 % - o [dates] dates object with n or 1 elements.
 % - p [dates] dates object with n or 1 elements.
 %
-% OUTPUTS 
+% OUTPUTS
 % - l [logical] column vector of max(n,1) elements (zeros or ones).
 
-% Copyright (C) 2013-2015 Dynare Team
+% Copyright (C) 2013-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ end
 %$ i2 = (d3>=d4);
 %$ i3 = (d4>=d2);
 %$ i4 = (d5>=d4);
-%$ i5 = (d5>=d5); 
+%$ i5 = (d5>=d5);
 %$
 %$ % Check the results.
 %$ t(1) = dassert(i1,false);

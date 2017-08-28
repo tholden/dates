@@ -2,7 +2,7 @@ function S = shiftS(S,n) % --*-- Unitary tests --*--
 
 % Removes the first n elements of a one dimensional cell array.
 
-% Copyright (C) 2009-2014 Dynare Team
+% Copyright (C) 2009-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -56,4 +56,3 @@ end
 %$
 %$ T = all(t);
 %@eof:1
-

@@ -2,13 +2,13 @@ function s = ndat(o) % --*-- Unitary tests --*--
 
 % Given a one element dates object, returns a string with the formatted date.
 %
-% INPUTS 
+% INPUTS
 % - o  [dates]
 %
 % OUTPUTS
 % - s  [integer]
 
-% Copyright (C) 2015 Dynare Team
+% Copyright (C) 2015-2017 Dynare Team
 %
 % This code is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -96,5 +96,3 @@ s = size(o.time, 1);
 %$ end
 %$ T = all(t);
 %@eof:4
-
-
