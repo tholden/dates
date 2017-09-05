@@ -102,6 +102,12 @@ if all(cellfun(@isstringdate,varargin))
     return
 end
 
+if isequal(nargin,1) && isstruct(varargin{1})
+    dd = varargin{1};
+    dd = class(dd,'dates');
+    return
+end
+
 if isequal(nargin,1) && isfreq(varargin{1})
     % Instantiate an empty dates object (only set frequency)
     if ischar(varargin{1})
