@@ -64,9 +64,6 @@ function dd = dates(varargin) % --*-- Unitary tests --*--
 
 % Initialization.
 if nargin>0 && ischar(varargin{1}) && isequal(varargin{1},'initialize')
-    dd = struct('ndat', 0, 'freq', NaN(0), 'time', NaN(0,2));
-    dd = class(dd,'dates');
-    assignin('base','emptydatesobject',dd);
     return
 end
 
