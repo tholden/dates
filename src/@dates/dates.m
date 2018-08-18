@@ -99,12 +99,6 @@ if all(cellfun(@isstringdate,varargin))
     return
 end
 
-if isequal(nargin,1) && isstruct(varargin{1})
-    dd = varargin{1};
-    dd = class(dd,'dates');
-    return
-end
-
 if isequal(nargin,1) && isfreq(varargin{1})
     % Instantiate an empty dates object (only set frequency)
     if ischar(varargin{1})
@@ -112,6 +106,13 @@ if isequal(nargin,1) && isfreq(varargin{1})
     else
         dd.freq = varargin{1};
     end
+    return
+end
+
+if isequal(nargin,1) && isstruct(varargin{1})
+    dd.freq = varargin{1}.freq;
+    dd.time = varargin{1}.time;
+    dd.ndat = varargin{1}.ndat;
     return
 end
 
